@@ -1,2 +1,4 @@
 *.afdesign~lock~
 memory/
+.DS_Store
+slac_template/extracted/

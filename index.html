@@ -124,6 +124,11 @@
       .reveal .slides {
         bottom: 40px;
       }
+
+      /* ── Lift navigation controls above footer ───────────────────────────── */
+      .reveal .controls {
+        bottom: 48px;
+      }
     </style>
   </head>
   <body>
@@ -147,12 +152,6 @@
             <p>LCLS Engineering Seminar Series</p>
             <p>Matt Bain &nbsp;|&nbsp; March 23, 2026</p>
           </div>
-          <!-- SLAC logo in bottom-left of title slide -->
-          <img
-            src="assets/slac_logo.svg"
-            style="position:absolute; bottom:52px; left:22px; height:26px; width:auto;"
-            alt="SLAC logo"
-          />
         </section>
 
         <!-- Hollow Core Fiber Overview -->
@@ -201,6 +200,14 @@
 
       </div><!-- /.slides -->
 
+      <!-- Logo shown only on title slide, fixed to bottom-left corner -->
+      <img
+        id="title-logo"
+        src="assets/slac_logo.svg"
+        alt="SLAC"
+        style="position:fixed; bottom:12px; left:18px; height:26px; width:auto; z-index:200; transition:opacity 0.3s;"
+      />
+
       <!-- Persistent SLAC footer (hidden on title slide) -->
       <div class="slac-footer" id="slac-footer">
         <img class="logo" src="assets/slac_logo.svg" alt="SLAC" />
@@ -217,14 +224,17 @@
         transition: 'slide',
       });
 
-      // Hide footer on the title slide, show on all others
-      const footer = document.getElementById('slac-footer');
-      function updateFooter() {
+      // Toggle footer and title logo based on current slide
+      const footer    = document.getElementById('slac-footer');
+      const titleLogo = document.getElementById('title-logo');
+      function updateChrome() {
         const isTitleSlide = Reveal.getCurrentSlide()?.classList.contains('title-slide');
         footer.classList.toggle('hidden', isTitleSlide);
+        titleLogo.style.opacity = isTitleSlide ? '1' : '0';
+        titleLogo.style.pointerEvents = isTitleSlide ? 'none' : 'none';
       }
-      Reveal.on('slidechanged', updateFooter);
-      Reveal.on('ready', updateFooter);
+      Reveal.on('slidechanged', updateChrome);
+      Reveal.on('ready', updateChrome);
     </script>
   </body>
 </html>
