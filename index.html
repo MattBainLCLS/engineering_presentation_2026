@@ -97,47 +97,36 @@
         margin: 0.6em 0;
       }
 
-      /* ── Persistent footer ───────────────────────────────────────────────── */
+      /* ── Persistent footer logo ──────────────────────────────────────────── */
       .slac-footer {
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        bottom: 10px;
+        left: 12px;
+        right: 24px;
         height: 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 18px;
-        background: white;
-        border-top: 3px solid var(--slac-red);
         z-index: 200;
         transition: opacity 0.3s;
       }
       .slac-footer img.logo {
-        height: 22px;
+        height: 40px;
         width: auto;
       }
-      .slac-footer .lab-name {
+      /* ── Footer slide number ─────────────────────────────────────────────── */
+      .footer-slide-num {
         font-family: 'Lato', sans-serif;
-        font-size: 11px;
-        color: var(--slac-dark);
-        letter-spacing: 0.02em;
+        font-size: 27px;
+        color: #333333;
       }
+
       /* Hide footer on title slide */
       .slac-footer.hidden {
         opacity: 0;
         pointer-events: none;
       }
 
-      /* ── Shrink slide area to not overlap footer ─────────────────────────── */
-      .reveal .slides {
-        bottom: 40px;
-      }
-
-      /* ── Lift navigation controls above footer ───────────────────────────── */
-      .reveal .controls {
-        bottom: 48px;
-      }
     </style>
   </head>
   <body>
@@ -524,8 +513,8 @@
 
       <!-- Persistent SLAC footer (hidden on title slide) -->
       <div class="slac-footer" id="slac-footer">
-        <img class="logo" src="assets/slac_logo.svg" alt="SLAC" />
-        <span class="lab-name">SLAC National Accelerator Laboratory</span>
+        <img class="logo" src="assets/slac_logo_red.png" alt="SLAC" />
+        <span class="footer-slide-num" id="footer-slide-num"></span>
       </div>
 
     </div><!-- /.reveal -->
@@ -535,7 +524,8 @@
     <script>
       Reveal.initialize({
         hash: true,
-        slideNumber: true,
+        slideNumber: false,
+        controls: false,
         transition: 'slide',
         plugins: [ RevealNotes ],
       });
@@ -544,6 +534,7 @@
       const footer          = document.getElementById('slac-footer');
       const titleLogo       = document.getElementById('title-logo');
       const stanfordDoeLogo = document.getElementById('title-stanford-doe');
+      const slideNumEl      = document.getElementById('footer-slide-num');
       function updateChrome() {
         const isTitleSlide = Reveal.getCurrentSlide()?.classList.contains('title-slide');
         footer.classList.toggle('hidden', isTitleSlide);
@@ -551,6 +542,7 @@
         titleLogo.style.pointerEvents = 'none';
         stanfordDoeLogo.style.opacity       = isTitleSlide ? '1' : '0';
         stanfordDoeLogo.style.pointerEvents = 'none';
+        slideNumEl.textContent = Reveal.getIndices().h + 1;
       }
       Reveal.on('slidechanged', updateChrome);
       Reveal.on('ready', updateChrome);
