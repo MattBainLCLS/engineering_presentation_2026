@@ -154,6 +154,111 @@
           </div>
         </section>
 
+        <!-- Motivation -->
+        <section>
+          <h3>Motivation — Why Ultrafast Pulses at LCLS?</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Science Case</h3>
+              <ul>
+                <li>Many physical and chemical processes (bond breaking, electron dynamics, phase transitions) occur on femtosecond timescales (10⁻¹⁵ s)</li>
+                <li>LCLS X-ray free-electron laser produces ~10 fs X-ray pulses — optical lasers must match this to enable pump–probe experiments</li>
+                <li>Shorter pulses → higher time resolution → ability to capture atomic motion in real time</li>
+                <li>Higher peak intensity → access to strong-field and nonlinear regimes at lower pulse energies</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Engineering Problem</h3>
+              <ul>
+                <li>Standard laser oscillators and amplifiers produce pulses of ~100 fs to several ps — not short enough</li>
+                <li>Conventional optics (lenses, windows, fibres) stretch pulses through dispersion and nonlinear phase accumulation</li>
+                <li>High-energy pulses (&gt;mJ) damage solid-core fibres before useful nonlinear effects occur</li>
+                <li>Hollow core fibres provide a path to compress pulses while handling high energies without material damage</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>LCLS operates pump–probe experiments where an optical laser excites a sample and X-rays probe the structural response. Temporal resolution is limited by whichever pulse is longer — so optical pulses must be as short as the X-ray pulses (~10 fs).</li>
+              <li>The key engineering challenge: getting from ~200 fs (typical Ti:Sapphire amplifier output) down to &lt;10 fs without destroying the optics or beam quality.</li>
+              <li>Hollow core fibres solve the damage threshold problem by keeping the light in air/gas rather than glass.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- What is an Ultrafast Pulse -->
+        <section>
+          <h3>What is an Ultrafast Laser Pulse?</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Time–Bandwidth Product</h3>
+              <ul>
+                <li>A pulse of duration Δt must have a minimum spectral bandwidth Δν: <strong>Δt · Δν ≥ 0.44</strong> (Gaussian pulse)</li>
+                <li>A 10 fs pulse requires &gt;44 THz bandwidth — spanning a significant fraction of the visible/NIR spectrum</li>
+                <li><em>Transform-limited</em> (TL) pulse: all frequency components arrive in phase → shortest possible duration for a given spectrum</li>
+                <li>Any spectral phase distortion (dispersion, nonlinearity) stretches the pulse beyond the TL duration</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Key Parameters</h3>
+              <ul>
+                <li><strong>Pulse duration:</strong> typically measured as FWHM of temporal intensity envelope (fs–ps)</li>
+                <li><strong>Peak power:</strong> P₀ = E_pulse / (√π · τ_FWHM) — can reach GW–TW for mJ pulses at 10–100 fs</li>
+                <li><strong>Carrier frequency:</strong> 800 nm (Ti:Sapphire) or 1030 nm (Yb:KGW) are common pump wavelengths at LCLS</li>
+                <li><strong>Spectral phase:</strong> φ(ω) — the phase relationship between frequency components; flat φ → transform-limited pulse</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>The time–bandwidth product is the fundamental reason you need broad bandwidth to make short pulses. A narrowband CW laser cannot be made into a short pulse regardless of how you modulate it.</li>
+              <li>Peak power is the relevant quantity for nonlinear optics — 1 mJ in 30 fs gives ~30 GW. Same energy in 1 ns gives only 1 MW. The peak power determines whether you cross the threshold for SPM, soliton formation, etc.</li>
+              <li>Ti:Sapphire at 800 nm is the dominant system at LCLS for historical reasons and its broad gain bandwidth (supports &lt;5 fs pulses). Yb-based systems are emerging for higher repetition rates.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Hollow Core Fiber Overview -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
+          <img src="figures/fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Solid Core Fiber</h3>
+              <ul>
+                <li>Core: solid silica glass (<em>n</em> ≈ 1.45)</li>
+                <li>Cladding: doped silica, slightly lower <em>n</em></li>
+                <li>Guidance via <strong>Total Internal Reflection</strong> (TIR)</li>
+                <li>Requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
+                <li>Light travels <em>inside</em> glass — subject to material dispersion and nonlinearity</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Hollow Core Fiber</h3>
+              <ul>
+                <li>Core: air or vacuum (<em>n</em> ≈ 1.00)</li>
+                <li>Cladding: microstructured silica (photonic crystal or anti-resonant rings)</li>
+                <li>TIR is <em>not possible</em> — <em>n</em><sub>core</sub> &lt; <em>n</em><sub>cladding</sub></li>
+                <li>Guidance via <strong>Photonic Bandgap</strong> or <strong>Anti-Resonant Reflection</strong></li>
+                <li>Light travels <em>through air</em> — dramatically reduced dispersion and nonlinearity</li>
+              </ul>
+            </div>
+
+          </div>
+          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
+            The inversion of refractive index contrast is the key distinction: hollow core guidance requires
+            structural engineering of the cladding rather than a simple step-index boundary.
+          </p>
+        </section>
+
         <!-- HCF Cross-Section Comparison -->
         <section>
           <h3>Hollow Core Fibre Architectures</h3>
@@ -195,68 +300,6 @@
           </aside>
         </section>
 
-        <!-- Hollow Core Fiber Overview -->
-        <section>
-          <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
-          <img src="figures/fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Solid Core Fiber</h3>
-              <ul>
-                <li>Core: solid silica glass (<em>n</em> ≈ 1.45)</li>
-                <li>Cladding: doped silica, slightly lower <em>n</em></li>
-                <li>Guidance via <strong>Total Internal Reflection</strong> (TIR)</li>
-                <li>Requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
-                <li>Light travels <em>inside</em> glass — subject to material dispersion and nonlinearity</li>
-              </ul>
-            </div>
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Hollow Core Fiber</h3>
-              <ul>
-                <li>Core: air or vacuum (<em>n</em> ≈ 1.00)</li>
-                <li>Cladding: microstructured silica (photonic crystal or anti-resonant rings)</li>
-                <li>TIR is <em>not possible</em> — <em>n</em><sub>core</sub> &lt; <em>n</em><sub>cladding</sub></li>
-                <li>Guidance via <strong>Photonic Bandgap</strong> or <strong>Anti-Resonant Reflection</strong></li>
-                <li>Light travels <em>through air</em> — dramatically reduced dispersion and nonlinearity</li>
-              </ul>
-            </div>
-
-          </div>
-          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
-            The inversion of refractive index contrast is the key distinction: hollow core guidance requires
-            structural engineering of the cladding rather than a simple step-index boundary.
-          </p>
-        </section>
-
-        <!-- Soliton Self-Compression Demo -->
-        <section>
-          <h3>Soliton Self-Compression in a Hollow Core Fiber</h3>
-          <iframe
-            src="soliton_interactive.html"
-            style="width: 100%; height: 560px; border: none;"
-          ></iframe>
-        </section>
-
-        <!-- Resonant Dispersive Wave Emission -->
-        <section>
-          <h3>Resonant Dispersive Wave Emission</h3>
-          <img src="figures/rdw_spectrum.svg" style="width: 100%; max-height: 460px; object-fit: contain;" />
-          <p style="font-size: 0.38em; color: #666; margin-top: 0.3em;">
-            Spectral energy density integrated below 250 nm: <strong style="color: #8C1515;">8 µJ (22.1% of total output energy)</strong>.
-          </p>
-        </section>
-
-        <!-- Dispersion Interactive Demo -->
-        <section>
-          <h3>Dispersion — GDD &amp; TOD on an Ultrafast Pulse</h3>
-          <iframe
-            src="dispersion_interactive.html"
-            style="width: 100%; height: 560px; border: none;"
-          ></iframe>
-        </section>
-
         <!-- SPM Interactive Demo -->
         <section>
           <h3>Self-Phase Modulation — Spectral Broadening</h3>
@@ -293,9 +336,106 @@
 
           </div>
           <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
-            The spectral phase imprinted by SPM (shown on the previous slide) is the bandwidth
+            The spectral phase imprinted by SPM (see previous slide) is the bandwidth
             resource that dispersion compensation converts into temporal compression.
           </p>
+        </section>
+
+        <!-- Dispersion Interactive Demo -->
+        <section>
+          <h3>Dispersion — GDD &amp; TOD on an Ultrafast Pulse</h3>
+          <iframe
+            src="dispersion_interactive.html"
+            style="width: 100%; height: 560px; border: none;"
+          ></iframe>
+        </section>
+
+        <!-- Soliton Introduction -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Soliton Self-Compression</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>What is a Soliton?</h3>
+              <ul>
+                <li>A soliton is a pulse that propagates without changing shape — dispersion and nonlinearity exactly balance</li>
+                <li>In anomalous dispersion (β₂ &lt; 0), negative GDD competes with SPM-induced positive chirp</li>
+                <li>A <em>higher-order soliton</em> (soliton number N &gt; 1) undergoes periodic compression and splitting — it first compresses dramatically before dispersing</li>
+                <li>Soliton number: N² = L_D / L_NL = γ P₀ τ² / |β₂| — set by pulse energy and fiber parameters</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>HCF Advantage</h3>
+              <ul>
+                <li>Anti-resonant HCF can be designed with anomalous dispersion at 800 nm by controlling core size and gas pressure</li>
+                <li>Low nonlinearity (air vs glass) allows high pulse energies while maintaining the correct N for soliton compression</li>
+                <li>Compression ratio scales as N — typical values N = 5–15 give 5–15× temporal compression in a single pass</li>
+                <li>Unlike chirped-mirror compression, soliton compression requires no additional optics after the fibre</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>The key insight is that in anomalous dispersion, GDD and SPM have opposite signs of chirp — GDD stretches the pulse in time (red before blue for anomalous) while SPM creates new blue frequencies at the leading edge and red at the trailing edge. At the right power level (N=1), these exactly cancel. For N&gt;1, the nonlinearity dominates early and the pulse compresses first.</li>
+              <li>In hollow core fibre, you get anomalous dispersion "for free" at the right core size — unlike solid silica which has normal dispersion below 1.3 µm. This is why HCF enables soliton compression at 800 nm.</li>
+              <li>The dispersive wave emission on the next slide is a direct consequence of higher-order soliton dynamics — energy shed by the soliton into a phase-matched resonance.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Soliton Self-Compression Demo -->
+        <section>
+          <h3>Soliton Self-Compression in a Hollow Core Fiber</h3>
+          <iframe
+            src="soliton_interactive.html"
+            style="width: 100%; height: 560px; border: none;"
+          ></iframe>
+        </section>
+
+        <!-- Resonant Dispersive Wave Emission -->
+        <section>
+          <h3>Resonant Dispersive Wave Emission</h3>
+          <img src="figures/rdw_spectrum.svg" style="width: 100%; max-height: 460px; object-fit: contain;" />
+          <p style="font-size: 0.38em; color: #666; margin-top: 0.3em;">
+            Spectral energy density integrated below 250 nm: <strong style="color: #8C1515;">8 µJ (22.1% of total output energy)</strong>.
+          </p>
+        </section>
+
+        <!-- Conclusion and Outlook -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Conclusions &amp; Outlook</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>What We've Shown</h3>
+              <ul>
+                <li>Anti-resonant hollow core fibres enable high-energy ultrafast pulse compression through SPM-based spectral broadening and soliton dynamics</li>
+                <li>Soliton self-compression in HCF produces few-cycle pulses (&lt;10 fs) from ~200 fs amplifier outputs in a single fibre stage</li>
+                <li>Resonant dispersive wave emission generates tunable deep-UV light (sub-250 nm), capturing 22% of the total pulse energy</li>
+                <li>HCF-based UV sources are well-matched to the LCLS pump–probe experimental programme</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Next Steps</h3>
+              <ul>
+                <li>Characterise compressed pulse duration via FROG or d-scan measurement at the fibre output</li>
+                <li>Optimise gas type and pressure to tune RDW emission wavelength for specific experimental targets</li>
+                <li>Demonstrate coupling of the UV output into the LCLS pump–probe beamline</li>
+                <li>Explore nested anti-resonant nodeless fibre (NANF) geometries for reduced propagation loss at longer fibre lengths</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>The overall story arc: we need short pulses at LCLS → conventional fibres can't handle the energy → HCF solves both the damage and dispersion problems → soliton dynamics give us efficient compression → dispersive waves give us tunable UV for science.</li>
+              <li>The characterisation step (FROG/d-scan) is essential — simulation shows good compression but the real output needs to be verified, especially the spectral phase.</li>
+              <li>Gas pressure tuning is a practical knob: higher pressure increases nonlinearity (more SPM, shorter RDW wavelength) and changes the dispersion landscape.</li>
+            </ul>
+          </aside>
         </section>
 
       </div><!-- /.slides -->
