@@ -96,6 +96,6 @@ fig.update_layout(
 )
 
 # ── Export ─────────────────────────────────────────────────────────────────────
-out = "spm_interactive.html"
+out = "interactives/spm_interactive.html"
 fig.write_html(out, include_plotlyjs="cdn")
 print(f"Saved → {out}")

@@ -329,7 +329,7 @@ update();
 """
 
 # ── Write output ──────────────────────────────────────────────────────────────
-out = "dispersion_interactive.html"
+out = "interactives/dispersion_interactive.html"
 with open(out, "w", encoding="utf-8") as f:
     f.write(html)
 

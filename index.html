@@ -313,7 +313,7 @@
         <section>
           <h3>Self-Phase Modulation — Spectral Broadening</h3>
           <iframe
-            src="spm_interactive.html"
+            src="interactives/spm_interactive.html"
             style="width: 100%; height: 560px; border: none;"
           ></iframe>
         </section>
@@ -411,7 +411,7 @@
         <section>
           <h3>Dispersion — GDD &amp; TOD on an Ultrafast Pulse</h3>
           <iframe
-            src="dispersion_interactive.html"
+            src="interactives/dispersion_interactive.html"
             style="width: 100%; height: 560px; border: none;"
           ></iframe>
         </section>
@@ -455,7 +455,7 @@
         <section>
           <h3>Soliton Self-Compression in a Hollow Core Fiber</h3>
           <iframe
-            src="soliton_interactive.html"
+            src="interactives/soliton_interactive.html"
             style="width: 100%; height: 560px; border: none;"
           ></iframe>
         </section>
@@ -506,12 +506,20 @@
 
       </div><!-- /.slides -->
 
+      <!-- Stanford+DOE logo shown only on title slide, fixed to bottom-right corner -->
+      <img
+        id="title-stanford-doe"
+        src="assets/stanford_doe_logo.png"
+        alt="Stanford University / U.S. Department of Energy"
+        style="position:fixed; bottom:12px; right:18px; height:52px; width:auto; z-index:200; transition:opacity 0.3s;"
+      />
+
       <!-- Logo shown only on title slide, fixed to bottom-left corner -->
       <img
         id="title-logo"
         src="assets/slac_logo.svg"
         alt="SLAC"
-        style="position:fixed; bottom:12px; left:18px; height:26px; width:auto; z-index:200; transition:opacity 0.3s;"
+        style="position:fixed; bottom:12px; left:18px; height:52px; width:auto; z-index:200; transition:opacity 0.3s;"
       />
 
       <!-- Persistent SLAC footer (hidden on title slide) -->
@@ -533,13 +541,16 @@
       });
 
       // Toggle footer and title logo based on current slide
-      const footer    = document.getElementById('slac-footer');
-      const titleLogo = document.getElementById('title-logo');
+      const footer          = document.getElementById('slac-footer');
+      const titleLogo       = document.getElementById('title-logo');
+      const stanfordDoeLogo = document.getElementById('title-stanford-doe');
       function updateChrome() {
         const isTitleSlide = Reveal.getCurrentSlide()?.classList.contains('title-slide');
         footer.classList.toggle('hidden', isTitleSlide);
-        titleLogo.style.opacity = isTitleSlide ? '1' : '0';
-        titleLogo.style.pointerEvents = isTitleSlide ? 'none' : 'none';
+        titleLogo.style.opacity       = isTitleSlide ? '1' : '0';
+        titleLogo.style.pointerEvents = 'none';
+        stanfordDoeLogo.style.opacity       = isTitleSlide ? '1' : '0';
+        stanfordDoeLogo.style.pointerEvents = 'none';
       }
       Reveal.on('slidechanged', updateChrome);
       Reveal.on('ready', updateChrome);

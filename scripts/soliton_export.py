@@ -14,7 +14,7 @@ import numpy as np
 import json
 
 # ── Load ──────────────────────────────────────────────────────────────────────
-data     = np.genfromtxt("soliton_propagation_hz.csv", delimiter=",")
+data     = np.genfromtxt("data/soliton_propagation_hz.csv", delimiter=",")
 freq_Hz  = data[:, 0]
 spectra  = data[:, 1:]
 
@@ -207,7 +207,7 @@ document.getElementById('z-slider').addEventListener('input', update);
 </html>
 """
 
-out = "soliton_interactive.html"
+out = "interactives/soliton_interactive.html"
 with open(out, "w", encoding="utf-8") as f:
     f.write(html)
 
