@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+
+    <style>
+      :root {
+        --r-background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Title Slide -->
+        <section>
+          <h1>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</h1>
+          <p>LCLS Engineering Seminar Series</p>
+          <p>Matt Bain &nbsp;|&nbsp; March 23, 2026</p>
+        </section>
+
+        <!-- Hollow Core Fiber Overview -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
+          <img src="fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
+
+            <div style="flex: 1; border: 1px solid #ccc; border-radius: 8px; padding: 0.8em;">
+              <h3 style="font-size: 1.2em; margin: 0 0 0.5em;">Solid Core Fiber</h3>
+              <ul>
+                <li>Core: solid silica glass (<em>n</em> ≈ 1.45)</li>
+                <li>Cladding: doped silica, slightly lower <em>n</em></li>
+                <li>Guidance via <strong>Total Internal Reflection</strong> (TIR)</li>
+                <li>Requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
+                <li>Light travels <em>inside</em> glass — subject to material dispersion and nonlinearity</li>
+              </ul>
+            </div>
+
+            <div style="flex: 1; border: 1px solid #ccc; border-radius: 8px; padding: 0.8em;">
+              <h3 style="font-size: 1.2em; margin: 0 0 0.5em;">Hollow Core Fiber</h3>
+              <ul>
+                <li>Core: air or vacuum (<em>n</em> ≈ 1.00)</li>
+                <li>Cladding: microstructured silica (photonic crystal or anti-resonant rings)</li>
+                <li>TIR is <em>not possible</em> — <em>n</em><sub>core</sub> &lt; <em>n</em><sub>cladding</sub></li>
+                <li>Guidance via <strong>Photonic Bandgap</strong> or <strong>Anti-Resonant Reflection</strong></li>
+                <li>Light travels <em>through air</em> — dramatically reduced dispersion and nonlinearity</li>
+              </ul>
+            </div>
+
+          </div>
+          <p style="margin-top: 0.5em; font-size: 0.39em; color: #555;">
+            The inversion of refractive index contrast is the key distinction: hollow core guidance requires
+            structural engineering of the cladding rather than a simple step-index boundary.
+          </p>
+        </section>
+
+        <!-- SPM Interactive Demo -->
+        <section>
+          <h3>Self-Phase Modulation — Spectral Broadening</h3>
+          <iframe
+            src="spm_interactive.html"
+            style="width: 100%; height: 580px; border: none;"
+          ></iframe>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        transition: 'slide',
+      });
+    </script>
+  </body>
+</html>
