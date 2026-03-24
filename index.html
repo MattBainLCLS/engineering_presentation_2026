@@ -5,13 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
 
     <style>
+      /* ── SLAC brand tokens ───────────────────────────────────────────────── */
       :root {
+        --slac-red:          #8C1515;
+        --slac-red-light:    #B83A4B;
+        --slac-dark:         #44546A;
+        --slac-title-grad:   linear-gradient(225deg, #E04F39 0%, #AF2D24 50%, #8C1515 100%);
+
         --r-background-color: #ffffff;
+        --r-main-font:        'Lato', sans-serif;
+        --r-heading-font:     'Lato', sans-serif;
+        --r-heading-color:    var(--slac-red);
+        --r-heading-font-weight: 400;
+        --r-main-color:       #333333;
+        --r-link-color:       var(--slac-red);
+      }
+
+      /* ── Global typography ───────────────────────────────────────────────── */
+      .reveal,
+      .reveal h1, .reveal h2, .reveal h3,
+      .reveal h4, .reveal h5, .reveal h6 {
+        font-family: 'Lato', sans-serif;
+      }
+
+      /* ── Content slide titles ────────────────────────────────────────────── */
+      .reveal .slides section h3 {
+        color: var(--slac-red);
+        font-weight: 400;
+        text-align: left;
+        border-bottom: 2px solid var(--slac-red);
+        padding-bottom: 0.2em;
+        margin-bottom: 0.5em;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      /* Override sub-heading h3s inside content columns */
+      .reveal .slides section .col-box h3 {
+        border-bottom: none;
+        font-size: 1.2em;
+        margin: 0 0 0.5em;
+        color: var(--slac-red);
+      }
+
+      /* ── Bullet markers ──────────────────────────────────────────────────── */
+      .reveal .slides section ul li::marker {
+        color: var(--slac-red-light);
+      }
+
+      /* ── Title slide overrides ───────────────────────────────────────────── */
+      .reveal .slides section.title-slide {
+        text-align: left;
+        padding: 0 1.6em;
+        color: white;
+      }
+      .reveal .slides section.title-slide h1 {
+        color: white;
+        font-size: 1.55em;
+        font-weight: 300;
+        line-height: 1.25;
+        margin-bottom: 0.4em;
+        text-transform: none;
+        letter-spacing: normal;
+      }
+      .reveal .slides section.title-slide p {
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 0.65em;
+        margin: 0.25em 0;
+      }
+      .reveal .slides section.title-slide .title-divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.6);
+        margin: 0.6em 0;
+      }
+
+      /* ── Persistent footer ───────────────────────────────────────────────── */
+      .slac-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        background: white;
+        border-top: 3px solid var(--slac-red);
+        z-index: 200;
+        transition: opacity 0.3s;
+      }
+      .slac-footer img.logo {
+        height: 22px;
+        width: auto;
+      }
+      .slac-footer .lab-name {
+        font-family: 'Lato', sans-serif;
+        font-size: 11px;
+        color: var(--slac-dark);
+        letter-spacing: 0.02em;
+      }
+      /* Hide footer on title slide */
+      .slac-footer.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ── Shrink slide area to not overlap footer ─────────────────────────── */
+      .reveal .slides {
+        bottom: 40px;
       }
     </style>
   </head>
@@ -20,10 +131,28 @@
       <div class="slides">
 
         <!-- Title Slide -->
-        <section>
-          <h1>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</h1>
-          <p>LCLS Engineering Seminar Series</p>
-          <p>Matt Bain &nbsp;|&nbsp; March 23, 2026</p>
+        <section
+          class="title-slide"
+          data-background-gradient="linear-gradient(225deg, #E04F39 0%, #AF2D24 50%, #8C1515 100%)"
+        >
+          <!-- Decorative SLAC graphic overlay -->
+          <img
+            src="assets/title_overlay.svg"
+            aria-hidden="true"
+            style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.12; pointer-events:none;"
+          />
+          <div style="position:relative; z-index:1; padding-top: 1.2em;">
+            <h1>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</h1>
+            <hr class="title-divider" />
+            <p>LCLS Engineering Seminar Series</p>
+            <p>Matt Bain &nbsp;|&nbsp; March 23, 2026</p>
+          </div>
+          <!-- SLAC logo in bottom-left of title slide -->
+          <img
+            src="assets/slac_logo.svg"
+            style="position:absolute; bottom:52px; left:22px; height:26px; width:auto;"
+            alt="SLAC logo"
+          />
         </section>
 
         <!-- Hollow Core Fiber Overview -->
@@ -32,8 +161,8 @@
           <img src="fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
           <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
 
-            <div style="flex: 1; border: 1px solid #ccc; border-radius: 8px; padding: 0.8em;">
-              <h3 style="font-size: 1.2em; margin: 0 0 0.5em;">Solid Core Fiber</h3>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Solid Core Fiber</h3>
               <ul>
                 <li>Core: solid silica glass (<em>n</em> ≈ 1.45)</li>
                 <li>Cladding: doped silica, slightly lower <em>n</em></li>
@@ -43,8 +172,8 @@
               </ul>
             </div>
 
-            <div style="flex: 1; border: 1px solid #ccc; border-radius: 8px; padding: 0.8em;">
-              <h3 style="font-size: 1.2em; margin: 0 0 0.5em;">Hollow Core Fiber</h3>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Hollow Core Fiber</h3>
               <ul>
                 <li>Core: air or vacuum (<em>n</em> ≈ 1.00)</li>
                 <li>Cladding: microstructured silica (photonic crystal or anti-resonant rings)</li>
@@ -55,7 +184,7 @@
             </div>
 
           </div>
-          <p style="margin-top: 0.5em; font-size: 0.39em; color: #555;">
+          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
             The inversion of refractive index contrast is the key distinction: hollow core guidance requires
             structural engineering of the cladding rather than a simple step-index boundary.
           </p>
@@ -66,12 +195,19 @@
           <h3>Self-Phase Modulation — Spectral Broadening</h3>
           <iframe
             src="spm_interactive.html"
-            style="width: 100%; height: 580px; border: none;"
+            style="width: 100%; height: 560px; border: none;"
           ></iframe>
         </section>
 
+      </div><!-- /.slides -->
+
+      <!-- Persistent SLAC footer (hidden on title slide) -->
+      <div class="slac-footer" id="slac-footer">
+        <img class="logo" src="assets/slac_logo.svg" alt="SLAC" />
+        <span class="lab-name">SLAC National Accelerator Laboratory</span>
       </div>
-    </div>
+
+    </div><!-- /.reveal -->
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
     <script>
@@ -80,6 +216,15 @@
         slideNumber: true,
         transition: 'slide',
       });
+
+      // Hide footer on the title slide, show on all others
+      const footer = document.getElementById('slac-footer');
+      function updateFooter() {
+        const isTitleSlide = Reveal.getCurrentSlide()?.classList.contains('title-slide');
+        footer.classList.toggle('hidden', isTitleSlide);
+      }
+      Reveal.on('slidechanged', updateFooter);
+      Reveal.on('ready', updateFooter);
     </script>
   </body>
 </html>
