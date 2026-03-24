@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
@@ -339,6 +344,63 @@
             The spectral phase imprinted by SPM (see previous slide) is the bandwidth
             resource that dispersion compensation converts into temporal compression.
           </p>
+        </section>
+
+        <!-- Spectral Phase Taylor Expansion -->
+        <section>
+          <h3>Spectral Phase — Taylor Expansion</h3>
+
+          <div style="margin: 1.2em auto 1em; text-align: center; font-size: 1.05em;">
+            $$\varphi(\omega) = \varphi_0
+              + \underbrace{\left.\frac{d\varphi}{d\omega}\right|_{\omega_0}}_{\mathrm{GD}} \!(\omega - \omega_0)
+              + \frac{1}{2}\underbrace{\left.\frac{d^2\varphi}{d\omega^2}\right|_{\omega_0}}_{\mathrm{GDD}} \!(\omega - \omega_0)^2
+              + \frac{1}{6}\underbrace{\left.\frac{d^3\varphi}{d\omega^3}\right|_{\omega_0}}_{\mathrm{TOD}} \!(\omega - \omega_0)^3
+              + \cdots$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.40em; margin-top: 0.6em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>$\varphi_0$ — Carrier-Envelope Phase</h3>
+              <ul>
+                <li>Absolute phase offset between the carrier wave and the pulse envelope</li>
+                <li>Shifts all frequencies equally — no effect on pulse shape or duration</li>
+                <li>Critical only for few-cycle pulses where CEP changes the peak electric field</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GD — Group Delay</h3>
+              <ul>
+                <li>Linear phase term: shifts the pulse envelope in time without distortion</li>
+                <li>Units: fs (or s) — the arrival time of the pulse centre</li>
+                <li>Irrelevant to pulse duration; sets the transit time through a medium</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GDD — Group Delay Dispersion</h3>
+              <ul>
+                <li>Quadratic phase: different frequencies travel at different group velocities</li>
+                <li>Units: fs² — positive GDD stretches the pulse (red before blue in silica)</li>
+                <li>Dominant term in most optical systems; compensated by chirped mirrors or gratings</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>TOD — Third-Order Dispersion</h3>
+              <ul>
+                <li>Cubic phase: creates asymmetric satellite pulses and a pedestal in time</li>
+                <li>Units: fs³ — becomes significant for broadband (&lt;30 fs) pulses</li>
+                <li>Residual TOD after GDD compensation is often the limit on compressed pulse quality</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>The Taylor expansion is the universal language of pulse propagation — every dispersive element (glass, fibre, air) can be characterised by its GDD and TOD coefficients.</li>
+              <li>For silica glass at 800 nm: GDD ≈ +36 fs²/mm, TOD ≈ +27 fs³/mm. A 1 mm window already adds enough GDD to stretch a 30 fs pulse to ~40 fs.</li>
+              <li>The next slide lets you dial in GDD and TOD interactively and see the effect on both the spectral phase and temporal pulse shape.</li>
+              <li>Note that SPM adds a nonlinear phase φ_NL(t) = γ P(t) L in the time domain — not a simple polynomial in ω. It broadens the spectrum but the resulting spectral phase is not simply GDD or TOD.</li>
+            </ul>
+          </aside>
         </section>
 
         <!-- Dispersion Interactive Demo -->
