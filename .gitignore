@@ -1,4 +1,6 @@
 *.afdesign~lock~
+figures/*.afdesign~lock~
 memory/
 .DS_Store
 slac_template/extracted/
+slac_template/~$*

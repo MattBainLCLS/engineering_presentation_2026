@@ -157,7 +157,7 @@
         <!-- Hollow Core Fiber Overview -->
         <section>
           <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
-          <img src="fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
+          <img src="figures/fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
           <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
 
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
@@ -196,6 +196,38 @@
             src="spm_interactive.html"
             style="width: 100%; height: 560px; border: none;"
           ></iframe>
+        </section>
+
+        <!-- Pulse Compression -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Pulse Compression</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Problem</h3>
+              <ul>
+                <li>Propagation through any dispersive medium stretches pulses in time</li>
+                <li>Glass optics introduce positive group delay dispersion (GDD) — red frequencies arrive before blue</li>
+                <li>Longer pulse duration reduces peak intensity, limiting nonlinear processes and damage thresholds</li>
+                <li>Goal: achieve transform-limited (shortest possible) pulses at the target</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Two-Stage HCF Compression</h3>
+              <ul>
+                <li><strong>Stage 1 — Spectral broadening:</strong> pulse propagates through gas-filled HCF; SPM creates new frequency components, broadening the spectrum</li>
+                <li><strong>Stage 2 — Dispersion compensation:</strong> chirped mirrors or grating pairs apply negative GDD, realigning frequency components in time</li>
+                <li>Result: pulse duration compressed by 10–100×, approaching the few-cycle regime (&lt; 10 fs)</li>
+                <li>HCF enables high-energy inputs (&gt; mJ) without damage — impossible in solid-core fiber</li>
+              </ul>
+            </div>
+
+          </div>
+          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
+            The spectral phase imprinted by SPM (shown on the previous slide) is the bandwidth
+            resource that dispersion compensation converts into temporal compression.
+          </p>
         </section>
 
       </div><!-- /.slides -->
