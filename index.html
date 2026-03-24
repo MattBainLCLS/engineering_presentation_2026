@@ -154,6 +154,47 @@
           </div>
         </section>
 
+        <!-- HCF Cross-Section Comparison -->
+        <section>
+          <h3>Hollow Core Fibre Architectures</h3>
+          <img src="figures/hcf_comparison.svg"
+               style="width: 100%; max-height: 460px; object-fit: contain; margin-top: 0.5em;" />
+          <aside class="notes">
+            <p><strong>Solid-Core Fibre</strong></p>
+            <ul>
+              <li>Light guided by Total Internal Reflection (TIR) — requires n_core &gt; n_cladding (~1.45 silica vs ~1.44 doped cladding).</li>
+              <li>Light travels entirely through glass: subject to full material dispersion and Kerr nonlinearity.</li>
+              <li>The reference point — everything hollow-core is measured against this.</li>
+            </ul>
+            <p><strong>Kagome HC-PCF</strong></p>
+            <ul>
+              <li>Guidance via Inhibited Coupling (IC): the kagome web geometry suppresses spatial overlap between the hollow-core mode and modes of the silica struts, preventing energy transfer rather than reflecting it.</li>
+              <li>Very broad transmission bandwidth (can span an octave), but loss is higher than anti-resonant designs (~dB/m range).</li>
+              <li>Name comes from the Japanese kagome basket-weave pattern — the silica strut topology directly echoes this.</li>
+              <li>Good choice when bandwidth matters more than loss, e.g. few-cycle pulse delivery.</li>
+            </ul>
+            <p><strong>Anti-Resonant HCF</strong></p>
+            <ul>
+              <li>Guidance via anti-resonant reflection from thin capillary walls: wall thickness t chosen so the operating wavelength sits between Fabry–Pérot resonances, maximising reflectivity back into the core.</li>
+              <li>Modern designs (NANF — Nested Anti-Resonant Nodeless Fibre) achieve loss &lt;0.1 dB/km, approaching conventional fibre.</li>
+              <li>No contact points between adjacent capillaries ("nodeless") reduces scattering loss at the nodes.</li>
+              <li>This is the architecture used in this work.</li>
+            </ul>
+            <p><strong>Hollow Capillary</strong></p>
+            <ul>
+              <li>Simplest design — a plain glass tube. No photonic structuring.</li>
+              <li>Not truly a guided mode: the EH₁₁ mode leaks, with loss ∝ (λ/a)³ — favouring large core radius a and long wavelength.</li>
+              <li>Historically the first HCF used for nonlinear optics (Marcatili &amp; Schmeltzer, 1964); still used for high-energy pulse delivery where loss is acceptable.</li>
+              <li>At LCLS: large-bore capillaries used to transport mJ-level pulses over short distances.</li>
+            </ul>
+            <p><strong>Key Comparison Point</strong></p>
+            <ul>
+              <li>In all hollow-core designs, light propagates through air/gas: nonlinearity reduced ~1000×, material dispersion ~1000× lower than glass.</li>
+              <li>Trade-off landscape: solid core (low loss, high nonlinearity) → capillary (leaky, broadband) → kagome (guided, very broadband) → anti-resonant (low loss, moderate bandwidth).</li>
+            </ul>
+          </aside>
+        </section>
+
         <!-- Hollow Core Fiber Overview -->
         <section>
           <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
@@ -196,6 +237,15 @@
             src="soliton_interactive.html"
             style="width: 100%; height: 560px; border: none;"
           ></iframe>
+        </section>
+
+        <!-- Resonant Dispersive Wave Emission -->
+        <section>
+          <h3>Resonant Dispersive Wave Emission</h3>
+          <img src="figures/rdw_spectrum.svg" style="width: 100%; max-height: 460px; object-fit: contain;" />
+          <p style="font-size: 0.38em; color: #666; margin-top: 0.3em;">
+            Spectral energy density integrated below 250 nm: <strong style="color: #8C1515;">8 µJ (22.1% of total output energy)</strong>.
+          </p>
         </section>
 
         <!-- Dispersion Interactive Demo -->
@@ -267,11 +317,13 @@
     </div><!-- /.reveal -->
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
     <script>
       Reveal.initialize({
         hash: true,
         slideNumber: true,
         transition: 'slide',
+        plugins: [ RevealNotes ],
       });
 
       // Toggle footer and title logo based on current slide
