@@ -298,6 +298,238 @@
           </aside>
         </section>
 
+        <!-- HCF Group Velocity Dispersion — Eq. 1 Travers 2019 -->
+        <section>
+          <h3>Group Velocity Dispersion of a Gas-Filled HCF</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$\beta_2(\lambda) \approx \frac{\lambda^3}{4\pi c^2}
+              \left[
+                \underbrace{\rho_r \frac{\partial^2 \chi_e}{\partial \lambda^2}}_{\text{material dispersion}}
+                -
+                \underbrace{\frac{u_{nm}^2}{2\pi^2 a^2}}_{\text{waveguide dispersion}}
+              \right]$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Material Dispersion</h3>
+              <ul>
+                <li>$\rho_r$ — gas density, set by fill pressure</li>
+                <li>$\chi_e(\lambda)$ — susceptibility of the fill gas</li>
+                <li>Always positive at optical wavelengths → <strong>normal</strong></li>
+                <li>Increases linearly with pressure</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Waveguide Dispersion</h3>
+              <ul>
+                <li>$u_{nm}$ — Bessel zero, fixed by mode (HE$_{11}$: $u_{11} = 2.405$)</li>
+                <li>$a$ — core radius; dispersion scales as $1/a^2$</li>
+                <li>Always negative → <strong>anomalous</strong></li>
+                <li>Weakens for larger cores</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Engineering the Dispersion</h3>
+              <ul>
+                <li>$\beta_2$ is the balance between the two terms</li>
+                <li>$\lambda_\text{zd}$ tunable via gas pressure</li>
+                <li>Pump red of $\lambda_\text{zd}$ → anomalous GVD → solitons</li>
+                <li>Higher pressure shifts $\lambda_\text{zd}$ to shorter $\lambda$, tuning RDW</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>This is equation 1 from Travers et al., Nature Photonics 2019. It is the GVD of the HEnm guided modes of a gas-filled hollow capillary fibre.</li>
+              <li>The HE₁₁ mode (n=1, m=1) is the fundamental mode — u₁₁ = 2.405 (first zero of J₀).</li>
+              <li>The key insight: in glass fibre you cannot tune the dispersion. In a gas-filled HCF you can continuously adjust β₂ by changing the fill pressure, giving full control over the soliton dynamics and RDW emission wavelength.</li>
+              <li>Large core radius is essential for high pulse energy (damage threshold scales with area) but reduces waveguide dispersion — this is why the paper's achievement of soliton dynamics in large-core HCF is significant.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- HCF Power Loss Length — Eq. 2 Travers 2019 -->
+        <section>
+          <h3>Power Loss Length of a Hollow Capillary Fibre</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$L_\text{loss} \approx \frac{4\pi^2 \overbrace{a^3}^{\text{large core}} }{3\, \underbrace{u_{nm}^2}_{\text{mode}} \, \underbrace{\lambda^2}_{\text{wavelength}}}$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Core Radius Scaling ($a^3$)</h3>
+              <ul>
+                <li>Loss falls <em>cubically</em> with core radius</li>
+                <li>Doubling $a$ → 8× longer $L_\text{loss}$</li>
+                <li>15 µm core: $L_\text{loss} \approx$ 1 cm — unusable</li>
+                <li>125 µm core: $L_\text{loss} \approx$ metres — practical</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Core-Size Trade-off</h3>
+              <ul>
+                <li>Large core → low loss, high damage threshold ✓</li>
+                <li>Large core → weak waveguide dispersion ✗</li>
+                <li>HC-PCF: low loss at small core, but limited energy</li>
+                <li>This work: gas pressure compensates reduced dispersion</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Fission vs. Loss Length</h3>
+              <ul>
+                <li>Soliton dynamics require $L_\text{fiss} &lt; L_\text{loss}$</li>
+                <li>$L_\text{fiss} \propto a^2$, $L_\text{loss} \propto a^3$ → larger cores always win</li>
+                <li>Shorter pulses reduce $L_\text{fiss}$</li>
+                <li>$N = 6.8$ at 125 µm, 26 fs, 1 bar He</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>This is equation 2 from Travers et al., Nature Photonics 2019. $u_{nm}$ is the mth zero of Bessel function $J_{n-1}$; for HE₁₁, $u_{11} = 2.405$.</li>
+              <li>The $a^3$ scaling is what makes large-core HCF unique — it's a leaky waveguide (EH₁₁ mode), not truly guided, so loss is intrinsically high at small core sizes.</li>
+              <li>The key engineering insight from the paper: $L_\text{fiss} \propto a^2$ but $L_\text{loss} \propto a^3$, so the ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ always improves with larger core. There is no fundamental barrier to soliton dynamics in HCF — it just requires a large enough core.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Soliton Fission Length — Eq. 3 Travers 2019 -->
+        <section>
+          <h3>Soliton Fission Length</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$L_\text{fiss} \approx \frac{a^2 \tau_{fw}}{3N\,|\delta(\lambda_0, \lambda_{zd})|}
+              \propto \frac{\overbrace{a^2}^{\text{core}} \; \overbrace{\tau_{fw}}^{\text{pulse duration}}}{\underbrace{I_0}_{\text{peak intensity}}}$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>What is $L_\text{fiss}$?</h3>
+              <ul>
+                <li>Length at which a higher-order soliton ($N > 1$) breaks up into $N$ fundamental solitons</li>
+                <li>The point of maximum compression — shortest pulse duration is reached here</li>
+                <li>$\tau_{fw}$ — FWHM pump duration; $I_0$ — peak intensity; $\delta$ — dispersion of fill gas</li>
+                <li>Requires $L_\text{fiss} &lt; L_\text{loss}$ for compression to occur</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Design Levers</h3>
+              <ul>
+                <li>$L_\text{fiss} \propto a^2$ — larger core increases fission length</li>
+                <li>$L_\text{loss} \propto a^3$ — larger core reduces loss faster</li>
+                <li>Ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ → always improves with larger core</li>
+                <li>Shorter pulses or higher intensity reduce $L_\text{fiss}$</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Operating Regime</h3>
+              <ul>
+                <li>Coherent compression requires $N &lt; 15$ (above: modulational instability)</li>
+                <li>Upper limit on $I_0$: ionisation threshold of the fill gas</li>
+                <li>This work: $N = 6.8$, $a = 125$ µm, $\tau_{fw} = 26$ fs, 1 bar He</li>
+                <li>$L_\text{fiss} \approx 1.5$ m — comfortably within 3 m fibre</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>Equation 3 from Travers et al., Nature Photonics 2019. The δ(λ₀, λ_zd) function encodes the dispersion landscape — specifically the integrated anomalous GVD between the pump and zero-dispersion wavelength.</li>
+              <li>The key scaling argument: L_fiss ∝ a² and L_loss ∝ a³, so L_fiss/L_loss ∝ 1/a. This means there is no fundamental barrier to soliton dynamics in HCF — you just need a large enough core. Previous HCF post-compression experiments used ~1 m fibres with 30 fs pulses, giving L_fiss >> L_fibre, which is why soliton effects were never seen.</li>
+              <li>The ionisation limit on intensity is important — noble gases (He, Ar, Ne) are preferred because they have high ionisation thresholds and well-characterised nonlinearity.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Noble Gas Nonlinearity -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
+            <thead>
+              <tr style="background: var(--slac-red); color: white;">
+                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">$n_2$ at 1 atm (m² W⁻¹)</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (eV)</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">$3.4 \times 10^{-25}$</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">24.6</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy solitons, VUV RDW</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">$1.1 \times 10^{-24}$</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">21.6</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV RDW tuning</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">$9.8 \times 10^{-23}$</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">15.8</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">$2.7 \times 10^{-22}$</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">14.0</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">$8.1 \times 10^{-22}$</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">12.1</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Choosing a Fill Gas</h3>
+              <ul>
+                <li>Higher $n_2$ → shorter $L_\text{fiss}$ and shorter fibre, but lower ionisation threshold limits peak intensity</li>
+                <li>$n_2$ scales linearly with pressure — heavier gases achieve the same nonlinearity at far lower pressure</li>
+                <li>He and Ne preferred for high-energy, high-intensity experiments (RDW into VUV)</li>
+                <li>Ar most common for conventional SPM post-compression at modest energies</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>At LCLS</h3>
+              <ul>
+                <li>Helium: high ionisation potential tolerates the intensities needed for soliton dynamics at mJ energies</li>
+                <li>Neon: used for shorter-wavelength RDW tuning (&lt;250 nm) at moderate pressures</li>
+                <li>Pressure tuning replaces gas choice as the primary control — same gas, variable dynamics</li>
+                <li>All noble gases are chemically inert — no damage to fibre walls or optical coatings</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>n₂ values from Lehmeier et al., Opt. Commun. 56, 67 (1985) — ref. 76 in Travers 2019. These are at 800 nm, 1 atm.</li>
+              <li>The ~2400× range from He to Xe is enormous. This is why helium experiments require bars of pressure while xenon experiments work at millibar levels.</li>
+              <li>The ionisation potential sets the maximum usable intensity via tunnel ionisation (PPT rate). Helium's 24.6 eV allows intensities up to ~10¹⁵ W/cm² before significant ionisation, where xenon is already heavily ionised at ~10¹³ W/cm².</li>
+              <li>Molecular gases (N₂, H₂) are occasionally used but add Raman contributions to the nonlinearity, which complicates the soliton dynamics.</li>
+            </ul>
+          </aside>
+        </section>
+
         <!-- SPM Interactive Demo -->
         <section>
           <h3>Self-Phase Modulation — Spectral Broadening</h3>
