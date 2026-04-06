@@ -45,9 +45,9 @@ ax.add_patch(Circle((0,0), 0.30,  fc="#607D8B", ec=BORDER, lw=1.2, zorder=2))
 ax.text(0, -1.18, "Silica core\n(n ≈ 1.45)",
         ha="center", va="top", fontsize=7.5, color=BORDER)
 
-# ── 2. KAGOME HC-PCF ─────────────────────────────────────────────────────────
+# ── 2. PHOTONIC BANDGAP HC-PCF ───────────────────────────────────────────────
 ax = axes[1]
-setup(ax, "Kagome HC-PCF")
+setup(ax, "Photonic Bandgap Fiber")
 ax.add_patch(Circle((0,0), 1.0, fc=SILICA, ec=BORDER, lw=1.8, zorder=1))
 
 # Triangular lattice of large air holes — thin silica struts between them
@@ -64,7 +64,7 @@ for i in range(-6, 7):
             ax.add_patch(Circle((x, y), r_h, fc=AIR, ec=STRUT, lw=0.5, zorder=2))
 
 ax.add_patch(Circle((0,0), core_r, fc=AIR, ec=BORDER, lw=1.4, zorder=3))
-ax.text(0, -1.18, "Hollow core\nKagome web cladding",
+ax.text(0, -1.18, "Hollow core\nPeriodic photonic crystal cladding",
         ha="center", va="top", fontsize=7.5, color=BORDER)
 
 # ── 3. ANTI-RESONANT HCF ─────────────────────────────────────────────────────

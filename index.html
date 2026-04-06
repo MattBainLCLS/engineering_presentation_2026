@@ -152,116 +152,206 @@
           </div>
         </section>
 
-        <!-- Motivation -->
+        <!-- Science Case — Timescales -->
         <section>
-          <h3>Motivation — Why Ultrafast Pulses at LCLS?</h3>
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>The Science Case</h3>
+          <h3 style="margin: 0 0 0.35em;">The Science Case — Ultrafast Processes</h3>
+          <img src="figures/timescales.svg"
+               style="width: 100%; max-height: 310px; object-fit: contain; display: block;" />
+          <div style="font-size: 0.38em; margin-top: 0.4em;">
+            <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
               <ul>
-                <li>Many physical and chemical processes (bond breaking, electron dynamics, phase transitions) occur on femtosecond timescales (10⁻¹⁵ s)</li>
-                <li>LCLS X-ray free-electron laser produces ~10 fs X-ray pulses — optical lasers must match this to enable pump–probe experiments</li>
-                <li>Shorter pulses → higher time resolution → ability to capture atomic motion in real time</li>
-                <li>Higher peak intensity → access to strong-field and nonlinear regimes at lower pulse energies</li>
+                <li>Photoinitiated dynamics span attoseconds (electron motion) to picoseconds (nuclear rearrangement) — each decade requires a shorter probe</li>
+                <li>LCLS X-ray pulses (~10–20 fs) probe structure; the optical pump must match this timescale to achieve meaningful time resolution</li>
+                <li>Compressing to &lt;50 fs unlocks electronic relaxation and proton-transfer dynamics inaccessible to standard ~150 fs amplifier pulses</li>
               </ul>
             </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Electron wavepacket dynamics and core-hole decay occur on attosecond timescales — beyond the reach of even compressed fs pulses, but set the context for why we push toward shorter pulses.</li>
+              <li>Proton transfer (e.g. in photoacids, DNA bases) occurs on a 1–20 fs timescale — accessible with 10 fs pulses but not with 100 fs pulses.</li>
+              <li>Electronic relaxation (S2→S1 internal conversion) in organic chromophores is typically 10–500 fs — the prime target for ultrafast spectroscopy at LCLS.</li>
+              <li>Molecular vibrations and IVR span 100 fs to a few ps; nuclear structural changes (bond breaking, isomerisation) from a few hundred fs to 10 ps.</li>
+              <li>The orange shaded band marks the window accessible with HCF-compressed pulses (10–50 fs). The grey band marks the typical uncompressed amplifier output — it misses proton transfer and fast electronic dynamics entirely.</li>
+            </ul>
+          </aside>
+        </section>
 
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+        <!-- Motivation — Pump–Probe & Engineering Problem -->
+        <section>
+          <h3 style="margin: 0 0 0.3em;">Motivation — Why Ultrafast Pulses at LCLS?</h3>
+          <img src="figures/pump_probe.svg"
+               style="width: 100%; max-height: 300px; object-fit: contain; display: block;" />
+          <div style="font-size: 0.38em; margin-top: 0.4em;">
+            <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
               <h3>The Engineering Problem</h3>
               <ul>
-                <li>Standard laser oscillators and amplifiers produce pulses of ~100 fs to several ps — not short enough</li>
-                <li>Conventional optics (lenses, windows, fibres) stretch pulses through dispersion and nonlinear phase accumulation</li>
-                <li>High-energy pulses (&gt;mJ) damage solid-core fibres before useful nonlinear effects occur</li>
-                <li>Hollow core fibres provide a path to compress pulses while handling high energies without material damage</li>
+                <li>Standard amplifiers produce ~100 fs to ps pulses — not short enough to resolve fast dynamics</li>
+                <li>High-energy pulses (&gt;mJ) damage solid-core fibres before useful spectral broadening occurs</li>
+                <li>Hollow core fibres: light travels through gas — high damage threshold, tuneable dispersion, enabling soliton-driven compression to &lt;20 fs</li>
               </ul>
             </div>
-
           </div>
           <aside class="notes">
             <ul>
-              <li>LCLS operates pump–probe experiments where an optical laser excites a sample and X-rays probe the structural response. Temporal resolution is limited by whichever pulse is longer — so optical pulses must be as short as the X-ray pulses (~10 fs).</li>
-              <li>The key engineering challenge: getting from ~200 fs (typical Ti:Sapphire amplifier output) down to &lt;10 fs without destroying the optics or beam quality.</li>
-              <li>Hollow core fibres solve the damage threshold problem by keeping the light in air/gas rather than glass.</li>
+              <li>LCLS operates pump–probe experiments where an optical laser excites a sample and X-rays probe the structural response. Temporal resolution is limited by whichever pulse is longer — so optical pulses must be as short as the X-ray pulses (~10–20 fs).</li>
+              <li>The key engineering challenge: getting from ~150 fs (typical Yb amplifier output) down to &lt;20 fs without destroying the optics or beam quality.</li>
+              <li>Hollow core fibres solve the damage threshold problem by keeping the light in gas rather than glass — and gas pressure tunes the dispersion to enable soliton self-compression.</li>
             </ul>
           </aside>
         </section>
 
-        <!-- What is an Ultrafast Pulse -->
+        <!-- What is an Ultrafast Pulse / Time–Bandwidth Product -->
         <section>
-          <h3>What is an Ultrafast Laser Pulse?</h3>
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Time–Bandwidth Product</h3>
-              <ul>
-                <li>A pulse of duration Δt must have a minimum spectral bandwidth Δν: <strong>Δt · Δν ≥ 0.44</strong> (Gaussian pulse)</li>
-                <li>A 10 fs pulse requires &gt;44 THz bandwidth — spanning a significant fraction of the visible/NIR spectrum</li>
-                <li><em>Transform-limited</em> (TL) pulse: all frequency components arrive in phase → shortest possible duration for a given spectrum</li>
-                <li>Any spectral phase distortion (dispersion, nonlinearity) stretches the pulse beyond the TL duration</li>
-              </ul>
-            </div>
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Key Parameters</h3>
-              <ul>
-                <li><strong>Pulse duration:</strong> typically measured as FWHM of temporal intensity envelope (fs–ps)</li>
-                <li><strong>Peak power:</strong> P₀ = E_pulse / (√π · τ_FWHM) — can reach GW–TW for mJ pulses at 10–100 fs</li>
-                <li><strong>Carrier frequency:</strong> 800 nm (Ti:Sapphire) or 1030 nm (Yb:KGW) are common pump wavelengths at LCLS</li>
-                <li><strong>Spectral phase:</strong> φ(ω) — the phase relationship between frequency components; flat φ → transform-limited pulse</li>
-              </ul>
-            </div>
-
-          </div>
+          <h3 style="margin: 0 0 0.35em;">What is an Ultrafast Laser Pulse?</h3>
+          <img src="figures/time_bandwidth.svg"
+               style="width: 100%; max-height: 400px; object-fit: contain;" />
+          <p style="font-size: 0.37em; color: #555; margin-top: 0.3em; text-align: center;">
+            Each frequency component oscillates at its own rate. At $t = 0$ all components are in phase and add constructively.
+            Away from $t = 0$ they rapidly dephase and cancel — the more components (broader bandwidth), the faster the cancellation, and the shorter the pulse: &nbsp; $\Delta t \cdot \Delta\nu \geq 0.44$.
+          </p>
           <aside class="notes">
             <ul>
-              <li>The time–bandwidth product is the fundamental reason you need broad bandwidth to make short pulses. A narrowband CW laser cannot be made into a short pulse regardless of how you modulate it.</li>
-              <li>Peak power is the relevant quantity for nonlinear optics — 1 mJ in 30 fs gives ~30 GW. Same energy in 1 ns gives only 1 MW. The peak power determines whether you cross the threshold for SPM, soliton formation, etc.</li>
-              <li>Ti:Sapphire at 800 nm is the dominant system at LCLS for historical reasons and its broad gain bandwidth (supports &lt;5 fs pulses). Yb-based systems are emerging for higher repetition rates.</li>
+              <li>This is the Fourier-transform argument for the time-bandwidth product. A pulse is a superposition of monochromatic waves; the shortest possible pulse for a given bandwidth is the transform-limited case where all components are perfectly in phase.</li>
+              <li>The constant 0.44 applies to Gaussian pulses (FWHM in time × FWHM in frequency). Other pulse shapes have different constants (e.g. sech²: 0.315).</li>
+              <li>The side-lobes visible in the superposition are the signature of a rectangular (flat-top) spectrum. A Gaussian-weighted spectrum gives a clean Gaussian pulse with no side-lobes — which is why real laser spectra are apodised or naturally Gaussian-shaped.</li>
+              <li>Key implication: to compress a pulse you must first broaden its spectrum (SPM in the fibre), then correct the spectral phase (chirped mirrors / grating compressor) so all components arrive in phase.</li>
             </ul>
           </aside>
         </section>
 
-        <!-- Hollow Core Fiber Overview -->
+        <!-- Roadmap -->
         <section>
-          <h3 style="margin: 0 0 0.4em;">Fiber Types</h3>
-          <img src="figures/fiber_types.svg" style="max-height: 280px; display: block; margin: 0 auto 0.5em;" />
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
+          <h3 style="margin: 0 0 0.6em;">Two Routes to Tunable Visible/UV Ultrafast Pulses</h3>
 
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Solid Core Fiber</h3>
-              <ul>
-                <li>Core: solid silica glass (<em>n</em> ≈ 1.45)</li>
-                <li>Cladding: doped silica, slightly lower <em>n</em></li>
-                <li>Guidance via <strong>Total Internal Reflection</strong> (TIR)</li>
-                <li>Requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
-                <li>Light travels <em>inside</em> glass — subject to material dispersion and nonlinearity</li>
-              </ul>
+          <div style="font-size: 0.38em; display: flex; flex-direction: column; gap: 0.9em;">
+
+            <!-- Route 1 -->
+            <div style="border: 1.5px solid #E65100; border-radius: 10px; padding: 0.7em 1em; background: #fff8f5;">
+              <div style="font-weight: 700; color: #E65100; margin-bottom: 0.4em; font-size: 1.05em;">
+                Route 1 — SPM + Post-Compression
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5em;">
+                <div style="border: 1px solid #ccc; border-radius: 6px; padding: 0.35em 0.7em; text-align: center; min-width: 6em;">
+                  OPA output<br><span style="color:#888; font-size:0.88em;">visible / UV</span>
+                </div>
+                <div style="color: #E65100; font-size: 1.3em;">→</div>
+                <div style="border: 1px solid #E65100; border-radius: 6px; padding: 0.35em 0.7em; text-align: center; min-width: 8em; background: white;">
+                  Gas-filled S-HCF<br><span style="color:#E65100; font-size:0.88em;">SPM broadens spectrum</span>
+                </div>
+                <div style="color: #E65100; font-size: 1.3em;">→</div>
+                <div style="border: 1px solid #ccc; border-radius: 6px; padding: 0.35em 0.7em; text-align: center; min-width: 8em;">
+                  Chirped mirrors<br><span style="color:#888; font-size:0.88em;">dispersion compensation</span>
+                </div>
+                <div style="color: #E65100; font-size: 1.3em;">→</div>
+                <div style="border: 2px solid #E65100; border-radius: 6px; padding: 0.35em 0.7em; text-align: center; min-width: 7em; background: #fff3ee; font-weight: 700; color: #E65100;">
+                  10–30 fs<br><span style="font-size:0.88em;">tunable vis/UV</span>
+                </div>
+              </div>
             </div>
 
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Hollow Core Fiber</h3>
-              <ul>
-                <li>Core: air or vacuum (<em>n</em> ≈ 1.00)</li>
-                <li>Cladding: microstructured silica (photonic crystal or anti-resonant rings)</li>
-                <li>TIR is <em>not possible</em> — <em>n</em><sub>core</sub> &lt; <em>n</em><sub>cladding</sub></li>
-                <li>Guidance via <strong>Photonic Bandgap</strong> or <strong>Anti-Resonant Reflection</strong></li>
-                <li>Light travels <em>through air</em> — dramatically reduced dispersion and nonlinearity</li>
-              </ul>
+            <!-- Route 2 -->
+            <div style="border: 1.5px solid #1565C0; border-radius: 10px; padding: 0.7em 1em; background: #f5f8ff;">
+              <div style="font-weight: 700; color: #1565C0; margin-bottom: 0.4em; font-size: 1.05em;">
+                Route 2 — Soliton Self-Compression + Resonant Dispersive Wave
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.4em;">
+                <div style="border: 1px solid #ccc; border-radius: 6px; padding: 0.35em 0.6em; text-align: center; min-width: 5.5em;">
+                  Amplifier<br><span style="color:#888; font-size:0.88em;">100–300 fs</span>
+                </div>
+                <div style="color: #1565C0; font-size: 1.3em;">→</div>
+                <div style="border: 1px solid #1565C0; border-radius: 6px; padding: 0.35em 0.6em; text-align: center; min-width: 7.5em; background: white;">
+                  S-HCF #1 + mirrors<br><span style="color:#1565C0; font-size:0.88em;">SPM + compression</span>
+                </div>
+                <div style="color: #1565C0; font-size: 1.3em;">→</div>
+                <div style="border: 1px solid #ccc; border-radius: 6px; padding: 0.35em 0.6em; text-align: center; min-width: 5em;">
+                  10–15 fs<br><span style="color:#888; font-size:0.88em;">NIR</span>
+                </div>
+                <div style="color: #1565C0; font-size: 1.3em;">→</div>
+                <div style="border: 1px solid #1565C0; border-radius: 6px; padding: 0.35em 0.6em; text-align: center; min-width: 7.5em; background: white;">
+                  S-HCF #2<br><span style="color:#1565C0; font-size:0.88em;">soliton dynamics</span>
+                </div>
+                <div style="color: #1565C0; font-size: 1.3em;">→</div>
+                <div style="display: flex; flex-direction: column; gap: 0.3em;">
+                  <div style="border: 2px solid #1565C0; border-radius: 6px; padding: 0.3em 0.6em; text-align: center; min-width: 5.5em; background: #eef2ff; font-weight: 700; color: #1565C0;">
+                    &lt;10 fs<br><span style="font-size:0.88em;">NIR soliton</span>
+                  </div>
+                  <div style="border: 2px solid #4527A0; border-radius: 6px; padding: 0.3em 0.6em; text-align: center; min-width: 5.5em; background: #f3eeff; font-weight: 700; color: #4527A0;">
+                    Tunable UV<br><span style="font-size:0.88em;">dispersive wave</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
-          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
-            The inversion of refractive index contrast is the key distinction: hollow core guidance requires
-            structural engineering of the cladding rather than a simple step-index boundary.
+          <p style="font-size: 0.36em; color: #666; margin-top: 0.7em; text-align: center;">
+            Both routes covered in this talk — Route 1 first (SPM, fiber design, post-compression), then Route 2 (soliton dynamics, RDW emission).
           </p>
         </section>
 
-        <!-- HCF Cross-Section Comparison -->
+        <!-- SPM + Interactive -->
         <section>
-          <h3>Hollow Core Fibre Architectures</h3>
+          <h3 style="margin: 0 0 0.4em;">Self-Phase Modulation — Spectral Broadening</h3>
+          <div style="display: flex; gap: 0.5em; align-items: flex-start;">
+
+            <div style="flex: 0.9; font-size: 0.40em;">
+              <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.6em 0.8em;">
+                <h3>Self-Phase Modulation (SPM)</h3>
+                <ul style="margin: 0; padding-left: 1.2em;">
+                  <li>Intensity-dependent refractive index: $n = n_0 + n_2 I(t)$</li>
+                  <li>Time-varying phase $\phi(t) = n_2 I(t)\, \omega_0 L / c$ generates new frequencies</li>
+                  <li>Leading edge red-shifted, trailing edge blue-shifted → spectral broadening</li>
+                </ul>
+              </div>
+              <img src="figures/spm_concept.svg" style="width: 100%; margin-top: 0.6em; border-radius: 6px; border: 1px solid #ddd;" />
+            </div>
+
+            <div style="flex: 1.4;">
+              <iframe
+                src="interactives/spm_interactive.html"
+                style="width: 100%; height: 430px; border: none;">
+              </iframe>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>SPM is the engine: the Kerr effect is instantaneous, so the phase shift follows the intensity envelope exactly. The leading edge of the pulse sees a rising intensity → phase increases → instantaneous frequency decreases (red shift). Trailing edge: falling intensity → blue shift.</li>
+              <li>The slider shows normalised peak intensity 0→1, corresponding to a B-integral of 0→5π rad. At high intensity the spectrum develops characteristic SPM side-lobes from constructive/destructive interference of the phase-shifted field.</li>
+              <li>SPM alone does not compress the pulse — it broadens the spectrum but adds a positive chirp (red in front, blue behind). Anomalous dispersion then acts to compress this chirped pulse, or soliton dynamics balance the two effects dynamically.</li>
+              <li>HCF advantage: gas pressure sets both n₂ (nonlinearity) and β₂ (dispersion) independently, giving full control over the soliton number N and the compression dynamics.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Fiber Types & HCF Architectures -->
+        <section>
+          <h3 style="margin: 0 0 0.3em;">Fiber Types</h3>
           <img src="figures/hcf_comparison.svg"
-               style="width: 100%; max-height: 460px; object-fit: contain; margin-top: 0.5em;" />
+               style="width: 100%; max-height: 240px; object-fit: contain;" />
+          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.38em; margin-top: 0.4em;">
+
+            <div class="col-box" style="flex: 0.65; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Solid Core Fiber</h3>
+              <ul>
+                <li>Core: solid silica (<em>n</em> ≈ 1.45); Cladding: slightly lower-<em>n</em> doped silica</li>
+                <li>Guidance via <strong>Total Internal Reflection</strong> — requires <em>n</em><sub>core</sub> &gt; <em>n</em><sub>cladding</sub></li>
+                <li>Light in glass — high material dispersion and Kerr nonlinearity</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1.35; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Hollow Core Fiber</h3>
+              <ul>
+                <li>Core: gas or vacuum; Cladding: microstructured silica — TIR <em>impossible</em></li>
+                <li>Light through gas — ~1000× lower dispersion and nonlinearity than solid core</li>
+                <li><strong>Photonic Bandgap (PBG):</strong> periodic cladding creates a reflective bandgap — low loss, but narrow bandwidth and fragile</li>
+                <li><strong>Anti-Resonant (AR):</strong> tube diameter tuned for destructive interference in the walls — low loss, broad bandwidth, but fragile</li>
+                <li><strong>Hollow Capillary:</strong> guidance via grazing-angle reflectivity — lower transmission, but tolerates high-intensity pulses</li>
+              </ul>
+            </div>
+
+          </div>
           <aside class="notes">
             <p><strong>Solid-Core Fibre</strong></p>
             <ul>
@@ -269,18 +359,19 @@
               <li>Light travels entirely through glass: subject to full material dispersion and Kerr nonlinearity.</li>
               <li>The reference point — everything hollow-core is measured against this.</li>
             </ul>
-            <p><strong>Kagome HC-PCF</strong></p>
+            <p><strong>Photonic Bandgap (PBG) Fibre</strong></p>
             <ul>
-              <li>Guidance via Inhibited Coupling (IC): the kagome web geometry suppresses spatial overlap between the hollow-core mode and modes of the silica struts, preventing energy transfer rather than reflecting it.</li>
-              <li>Very broad transmission bandwidth (can span an octave), but loss is higher than anti-resonant designs (~dB/m range).</li>
-              <li>Name comes from the Japanese kagome basket-weave pattern — the silica strut topology directly echoes this.</li>
-              <li>Good choice when bandwidth matters more than loss, e.g. few-cycle pulse delivery.</li>
+              <li>Guidance via a photonic bandgap: the periodic microstructured cladding (typically a triangular lattice of air holes in silica) creates a range of frequencies for which no propagating mode exists in the cladding — a reflective interface that confines light to the hollow core without TIR.</li>
+              <li>Transmission bandwidth is limited to the bandgap window; outside it, light leaks into the cladding.</li>
+              <li>Can achieve very low loss within the bandgap, but bandwidth is narrower than anti-resonant designs.</li>
+              <li>Mechanically fragile and difficult to fabricate — the periodic lattice must be maintained along the full fibre length.</li>
             </ul>
             <p><strong>Anti-Resonant HCF</strong></p>
             <ul>
-              <li>Guidance via anti-resonant reflection from thin capillary walls: wall thickness t chosen so the operating wavelength sits between Fabry–Pérot resonances, maximising reflectivity back into the core.</li>
+              <li>Guidance via anti-resonant reflection: the capillary tube diameter is tuned so that the operating wavelength falls between Fabry–Pérot resonances of the glass wall — destructive interference inside the glass suppresses transmission into the cladding, keeping light confined to the hollow core.</li>
+              <li>Broader transmission bandwidth than PBG fibre, with lower loss than capillary designs.</li>
               <li>Modern designs (NANF — Nested Anti-Resonant Nodeless Fibre) achieve loss &lt;0.1 dB/km, approaching conventional fibre.</li>
-              <li>No contact points between adjacent capillaries ("nodeless") reduces scattering loss at the nodes.</li>
+              <li>Difficult to fabricate and mechanically fragile — thin-walled capillaries are easily damaged.</li>
               <li>This is the architecture used in this work.</li>
             </ul>
             <p><strong>Hollow Capillary</strong></p>
@@ -293,7 +384,420 @@
             <p><strong>Key Comparison Point</strong></p>
             <ul>
               <li>In all hollow-core designs, light propagates through air/gas: nonlinearity reduced ~1000×, material dispersion ~1000× lower than glass.</li>
-              <li>Trade-off landscape: solid core (low loss, high nonlinearity) → capillary (leaky, broadband) → kagome (guided, very broadband) → anti-resonant (low loss, moderate bandwidth).</li>
+              <li>Trade-off landscape: solid core (low loss, high nonlinearity) → capillary (leaky, broadband) → PBG (guided, bandgap-limited bandwidth) → anti-resonant (low loss, broad bandwidth).</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- HCF Power Loss Length — Eq. 2 Travers 2019 -->
+        <section>
+          <h3>Power Loss Length of a Hollow Capillary Fibre</h3>
+
+          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
+            $$L_\text{loss} \approx \frac{4\pi^2 \overbrace{a^3}^{\text{large core}} }{3\, \underbrace{u_{nm}^2}_{\text{mode}} \, \underbrace{\lambda^2}_{\text{wavelength}}}$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Core Radius Scaling ($a^3$)</h3>
+              <ul>
+                <li>Loss falls <em>cubically</em> with core radius</li>
+                <li>Doubling $a$ → 8× longer $L_\text{loss}$</li>
+                <li>15 µm core: $L_\text{loss} \approx$ 1 cm — unusable</li>
+                <li>125 µm core: $L_\text{loss} \approx$ metres — practical</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Wavelength Scaling ($\lambda^2$)</h3>
+              <ul>
+                <li>$L_\text{loss} \propto 1/\lambda^2$ — longer wavelengths suffer <em>more</em> loss</li>
+                <li>Moving 800 nm → 1030 nm (Yb): $L_\text{loss}$ drops by 40%</li>
+                <li>Moving to mid-IR (2 µm): $L_\text{loss}$ drops by 6×</li>
+                <li>Working in the IR forces larger core diameters to compensate</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>The Trade-off</h3>
+              <ul>
+                <li>Large core → low loss, high damage threshold ✓</li>
+                <li>Large core → weak waveguide dispersion and effective nonlinearity ✗</li>
+                <li>Solution: choose a heavier fill gas or increase pressure to restore nonlinearity</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>This is equation 2 from Travers et al., Nature Photonics 2019. $u_{nm}$ is the mth zero of Bessel function $J_{n-1}$; for HE₁₁, $u_{11} = 2.405$.</li>
+              <li>The $a^3$ scaling is what makes large-core HCF unique — it's a leaky waveguide (EH₁₁ mode), not truly guided, so loss is intrinsically high at small core sizes.</li>
+              <li>The key engineering insight from the paper: $L_\text{fiss} \propto a^2$ but $L_\text{loss} \propto a^3$, so the ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ always improves with larger core. There is no fundamental barrier to soliton dynamics in HCF — it just requires a large enough core.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Stretching Hollow Capillary Fibres -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Improving Capillary Transmission by Stretching</h3>
+          <img src="figures/capillary_stretching.svg"
+               style="width: 100%; max-height: 420px; object-fit: contain;" />
+          <p style="font-size: 0.37em; color: #666; margin-top: 0.4em; text-align: center;">
+            Physically stretching the fibre keeps it straight, maintaining near-grazing angles of incidence at the glass wall where Fresnel reflectance approaches unity — reducing cumulative bounce losses along the fibre length.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>A hollow capillary is an inherently leaky waveguide: light is guided by near-total reflection at the inner glass surface at very shallow (grazing) angles.</li>
+              <li>The Marcatili–Schmeltzer loss formula (L_loss ∝ a³/λ²) assumes a perfectly straight fibre. In practice, bending increases loss by reducing the angle of incidence at each wall bounce — moving away from the grazing regime where reflectance is highest.</li>
+              <li>Physically stretching the fibre removes the sag introduced by gravity and clamping, restoring the straight geometry and the associated high-AOI reflectance.</li>
+              <li>Each bounce: R slightly less than 1. After N bounces, transmitted power ∝ R^N. Keeping R close to 1 (grazing) dramatically reduces the accumulated loss over a metre-scale fibre.</li>
+              <li>This is a practical technique used in high-energy pulse delivery setups — stretching over a rigid mount or tensioning the capillary between two translation stages.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Noble Gas Nonlinearity -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
+            <thead>
+              <tr style="background: var(--slac-red); color: white;">
+                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (3-photon λ)</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">24.6 eV (151.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy, high-intensity</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">21.6 eV (172.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV generation</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">15.8 eV (235.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">14.0 eV (265.7 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">12.1 eV (307.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Choosing a Fill Gas</h3>
+              <ul>
+                <li>Working in the IR requires a larger core → weaker effective nonlinearity → compensate with a heavier gas (Kr, Xe) or higher pressure</li>
+                <li>$n_2$ scales linearly with pressure — Xe achieves the same nonlinearity as Ar at ~8× lower pressure</li>
+                <li>He and Ne for high-energy / high-intensity experiments where Xe or Ar would ionise</li>
+                <li>Ionisation potential sets the ceiling: lower IP gas = lower maximum intensity before plasma formation</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>At LCLS</h3>
+              <ul>
+                <li>Helium: high ionisation potential tolerates the intensities needed at mJ energies</li>
+                <li>Neon: used for shorter-wavelength UV generation (&lt;250 nm) at moderate pressures</li>
+                <li>Pressure tuning replaces gas choice as the primary control — same gas, variable dynamics</li>
+                <li>All noble gases are chemically inert — no damage to fibre walls or optical coatings</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>n₂ values from Lehmeier et al., Opt. Commun. 56, 67 (1985) — ref. 76 in Travers 2019. These are at 800 nm, 1 atm.</li>
+              <li>The ~2400× range from He to Xe is enormous. This is why helium experiments require bars of pressure while xenon experiments work at millibar levels.</li>
+              <li>The ionisation potential sets the maximum usable intensity via tunnel ionisation (PPT rate). Helium's 24.6 eV allows intensities up to ~10¹⁵ W/cm² before significant ionisation, where xenon is already heavily ionised at ~10¹³ W/cm².</li>
+              <li>Molecular gases (N₂, H₂) are occasionally used but add Raman contributions to the nonlinearity, which complicates the soliton dynamics.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- OPA Broadening Results -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Spectral Broadening of Yb-OPA Output in S-HCF</h3>
+          <div style="display: flex; gap: 1.4em; align-items: flex-start;">
+
+            <div style="flex: 1;">
+              <img src="figures/opa_fig2.png" style="width: 100%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5;">
+                <strong>Pressure tuning at 401 nm</strong> (Kr, 1 m × 150 µm S-HCF).
+                <span style="color: #E65100;">Shaded curves = experiment</span>; <strong>black lines = simulation</strong> — excellent agreement.
+                FTL compresses from 70.6 fs (0 bar) to 9.8 fs (2.5 bar): <strong>7× bandwidth increase</strong> by simply varying gas pressure.
+              </p>
+            </div>
+
+            <div style="flex: 1;">
+              <img src="figures/opa_fig3.png" style="width: 100%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5;">
+                <strong>Wavelength tunability at 1 bar Kr.</strong>
+                Consistent ~17 nm FWHM bandwidth and FTL of 18–25 fs across the full OPA tuning range (370–450 nm) —
+                <strong>no fiber or optic changes required</strong>, only OPA wavelength and pressure.
+              </p>
+            </div>
+
+          </div>
+          <div style="font-size: 0.34em; margin-top: 0.5em; background: #f5f5f5; border-radius: 6px; padding: 0.5em 1em; color: #444; display: flex; gap: 2em; justify-content: center;">
+            <span>Source: Carbide 2 mJ, 330 fs, 33 kHz → Orpheus OPA (SHS, 350–520 nm)</span>
+            <span>Fiber: 1 m, 150 µm core, Kr, stretched S-HCF</span>
+            <span>Post-compression: prism pair or chirped mirrors → <strong>15–30 fs</strong></span>
+            <span style="color: #8C1515;">Kaufman, Larsen, … Bain et al., <em>Opt. Lett.</em> 2025</span>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>This is our own work — demonstrating SPM broadening of the OPA second harmonic in a stretched hollow capillary fiber filled with krypton.</li>
+              <li>The key result from Fig 2: single fiber, single gas, just turn the pressure knob — bandwidth increases 7× and FTL drops from 70 fs to sub-10 fs. Simulation (Luna.jl) matches the experiment remarkably well.</li>
+              <li>Fig 3 shows the other tuning axis: fix pressure, scan OPA wavelength across the full mirror bandwidth (370–450 nm). The broadened spectrum stays consistent across the whole range. No realignment needed.</li>
+              <li>Together these two figures show simultaneous tunability in wavelength AND pulse duration — which is exactly what's needed for pump–probe experiments targeting different chromophores.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Deployment at LCLS — TILE pressure scan -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Pressure Tuning in a Compact TILE System</h3>
+          <img src="figures/pressure_scan_tile.svg"
+               style="width: 100%; max-height: 390px; object-fit: contain; display: block;" />
+          <div style="font-size: 0.34em; margin-top: 0.4em; background: #f5f5f5; border-radius: 6px; padding: 0.5em 1em; color: #444; display: flex; gap: 2em; justify-content: center;">
+            <span><strong>30 cm</strong> S-HCF · 150 µm core · Argon — fits inside a TILE</span>
+            <span>FTL tunable from <strong>~100 fs → ~13 fs</strong> by pressure alone</span>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>This is our own pressure-scan data using a 30 cm stretched HCF — short enough to fit inside a TILE enclosure, making it viable for deployment at an LCLS hutch without a dedicated laser room.</li>
+              <li>The key result: single knob (Ar pressure) tunes the transform-limited duration from ~100 fs (unbroadened) down to ~13 fs. No optic changes, no realignment.</li>
+              <li>Compare to the OPA paper: 1 m fiber, Kr, 350–500 nm. Here: 30 cm, Ar, 800 nm Ti:S — same principle, different wavelength and a much more compact format.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- SPM creates a chirped pulse -->
+        <section>
+          <h3 style="margin: 0 0 0.35em;">SPM Creates a Chirped Pulse</h3>
+          <img src="figures/spm_chirp.svg"
+               style="width: 100%; max-height: 400px; object-fit: contain; display: block;" />
+          <p style="font-size: 0.36em; color: #555; margin-top: 0.35em; text-align: center;">
+            The instantaneous frequency shift $\delta\omega(t)=-\frac{n_2\omega_0 L}{c}\frac{dI}{dt}$
+            is negative (red-shifted) on the rising edge and positive (blue-shifted) on the falling edge.
+            The pulse exits the fibre with <em>positive chirp</em> — reds at the front, blues at the back —
+            and is therefore stretched in time relative to its transform limit.
+            A compressor applying equal and opposite (negative) GDD realigns all components, recovering the short pulse.
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>This is the key link between SPM and post-compression. SPM does two things simultaneously: it broadens the spectrum (good — more bandwidth means shorter transform-limited duration) and it imposes a positive chirp (bad — the new frequency components are temporally sorted, stretching the pulse).</li>
+              <li>Left panel: the instantaneous frequency δω follows −dI/dt. On the leading edge (rising intensity) dI/dt &gt; 0 so δω &lt; 0 → red-shift. On the trailing edge dI/dt &lt; 0 so δω &gt; 0 → blue-shift. New red frequencies sit at the front of the pulse; new blue frequencies at the back.</li>
+              <li>Right panels: the transform-limited pulse is short because all frequency components arrive in phase. After SPM the same bandwidth is present but the components are time-ordered (chirped), stretching the pulse by the factor √(1+(φ₂/τ₀²)²). The compressor undoes this by adding negative GDD.</li>
+              <li>Intuition: SPM is like applying a positive GDD to the pulse in the time domain. Prism compressors and chirped mirrors apply the conjugate negative GDD to cancel it.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Spectral Phase Taylor Expansion -->
+        <section>
+          <h3>Spectral Phase — Taylor Expansion</h3>
+
+          <div style="margin: 1.2em auto 2.0em; text-align: center; font-size: 0.62em;">
+            $$\varphi(\omega) = \varphi_0
+              + \underbrace{\left.\frac{d\varphi}{d\omega}\right|_{\omega_0}}_{\mathrm{GD}} \!(\omega - \omega_0)
+              + \frac{1}{2}\underbrace{\left.\frac{d^2\varphi}{d\omega^2}\right|_{\omega_0}}_{\mathrm{GDD}} \!(\omega - \omega_0)^2
+              + \frac{1}{6}\underbrace{\left.\frac{d^3\varphi}{d\omega^3}\right|_{\omega_0}}_{\mathrm{TOD}} \!(\omega - \omega_0)^3
+              + \cdots$$
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.40em; margin-top: 0.6em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>$\varphi_0$ — Carrier-Envelope Phase</h3>
+              <ul>
+                <li>Constant phase offset; shifts all frequencies equally</li>
+                <li>No effect on pulse shape or duration</li>
+                <li>Only relevant for few-cycle pulses</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GD — Group Delay</h3>
+              <ul>
+                <li>Linear phase: shifts the envelope in time without distortion</li>
+                <li>Sets pulse arrival time; no effect on duration</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>GDD — Group Delay Dispersion</h3>
+              <ul>
+                <li>Quadratic phase: different frequencies arrive at different times</li>
+                <li>Units: fs² — positive GDD stretches the pulse</li>
+                <li>Dominant term in most optical systems</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>TOD — Third-Order Dispersion</h3>
+              <ul>
+                <li>Cubic phase: creates asymmetric satellite pulses</li>
+                <li>Units: fs³ — significant for broadband (&lt;30 fs) pulses</li>
+                <li>Often the limit on compressed pulse quality</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Spectral Phase + Dispersion Interactive (combined) -->
+        <section>
+          <h3 style="margin: 0 0 0.3em;">Spectral Phase &amp; Dispersion</h3>
+          <iframe
+            src="interactives/dispersion_interactive.html"
+            style="width: 100%; height: 510px; border: none;">
+          </iframe>
+        </section>
+
+        <!-- Post-Compression Introduction -->
+        <section>
+          <h3 style="margin: 0 0 0.35em;">Post-Compression</h3>
+          <img src="figures/compressor_schematics.svg"
+               style="width: 92%; max-height: 200px; object-fit: contain; display: block; margin: 0 auto 0.5em;" />
+          <div style="display: flex; gap: 1.0em; align-items: flex-start; font-size: 0.38em; margin-top: 0.2em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>The Concept</h3>
+              <ul>
+                <li>SPM broadens the spectrum but adds a positive <em>chirp</em> — red frequencies in front, blue behind</li>
+                <li>The pulse carries more bandwidth than its duration requires: it is not transform-limited</li>
+                <li>Applying equal and opposite (negative) GDD realigns all frequency components in time → compressed pulse</li>
+                <li>Quality of compression limited by residual higher-order dispersion (TOD, FOD)</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Prism Compressor</h3>
+              <ul>
+                <li>Angular dispersion from two prisms introduces negative GDD</li>
+                <li>GDD continuously tunable by adjusting prism separation or insertion depth</li>
+                <li>Low loss, broadband — suited to visible/UV where chirped mirrors are limited</li>
+                <li>Introduces TOD with the same sign as GDD — can limit compression quality for very broad spectra</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Chirped Mirror Compressor</h3>
+              <ul>
+                <li>Multilayer dielectric coating: longer wavelengths penetrate deeper → arrive later → negative GDD</li>
+                <li>Fixed GDD per bounce (~−40 to −100 fs² per reflection); dispersion controlled by number of bounces</li>
+                <li>Compact, low loss, negligible TOD — ideal for few-cycle compression in NIR</li>
+                <li>Requires pairing with thin glass wedges for fine GDD adjustment</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Post-compression is the second stage of Route 1. The SPM-broadened pulse exiting the HCF is chirped — it has the bandwidth for a short pulse but the frequencies are temporally spread out.</li>
+              <li>Prism compressors are the natural choice for visible/UV (350–700 nm) where chirped mirror coatings are harder to manufacture. They're used in our OPA broadening setup.</li>
+              <li>Chirped mirrors dominate in the NIR (700–1100 nm) where high-quality designs are commercially available. They're compact and introduce negligible TOD.</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- CXI IRF — HCF + LCLS Low Charge -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">HCF Compression at CXI — Instrument Response Function</h3>
+          <div style="display: flex; gap: 1.4em; align-items: flex-start;">
+
+            <div style="flex: 1.4;">
+              <img src="figures/CXI_IRF.png"
+                   style="width: 100%; border-radius: 4px;" />
+            </div>
+
+            <div style="flex: 0.6; font-size: 0.42em;">
+              <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+                <h3>Key Results</h3>
+                <ul>
+                  <li>HCF broadening of 800 nm Ti:S fundamental compressed to &lt;40 fs</li>
+                  <li>Combined with LCLS Low Charge mode (&lt;10 fs X-ray pulses)</li>
+                  <li>Overall instrument response function: <strong>7.6 fs</strong></li>
+                  <li>Deployed in three experiments so far, with one more upcoming April '26</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Soliton — Wave of Translation (historical intro) -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">The Soliton — A Wave of Translation</h3>
+          <!-- Top row: animation + quote -->
+          <div style="display: flex; gap: 1.4em; align-items: flex-start; margin-bottom: 0.6em;">
+
+            <div style="flex: 1.45; min-width: 0;">
+              <img src="figures/soliton_canal_animation.gif"
+                   style="width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+              <p style="font-size: 0.29em; color: #666; text-align: center; margin: 0.3em 0 0;">
+                Blue: soliton — sech² shape preserved indefinitely. &nbsp;Orange: non-soliton pulse — same initial shape, disperses at the same group velocity.
+              </p>
+            </div>
+
+            <div style="flex: 1; font-size: 0.38em;">
+              <blockquote style="border-left: 3px solid #1565C0; padding: 0.6em 0.9em;
+                                  margin: 0; background: #f0f5ff; border-radius: 0 6px 6px 0;
+                                  font-style: italic; color: #333; line-height: 1.55;">
+                "I followed it on horseback, and overtook it still rolling on at a rate of some
+                eight or nine miles an hour, preserving its original figure some thirty feet long
+                and a foot to a foot and a half in height."
+                <div style="text-align: right; font-style: normal; font-size: 0.85em;
+                            color: #44546A; margin-top: 0.4em; font-weight: 600;">
+                  — John Scott Russell, Union Canal, Edinburgh, August 1834
+                </div>
+              </blockquote>
+            </div>
+
+          </div>
+
+          <!-- Bottom row: two boxes side by side -->
+          <div style="display: flex; gap: 1.0em; font-size: 0.37em;">
+
+            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
+              <div style="font-weight: 700; color: #44546A; margin-bottom: 0.35em;">Historical milestones</div>
+              <ul style="margin: 0; padding-left: 1.2em;">
+                <li>Russell's report to the British Association (1844) was initially rejected by theorists — a wave cannot travel without changing shape</li>
+                <li>Boussinesq (1871) and Korteweg &amp; de Vries (1895) provided the first theoretical descriptions</li>
+                <li>Zabusky &amp; Kruskal (1965) re-discovered them numerically and coined the term <em>soliton</em> — a particle-like wave that passes through others intact</li>
+              </ul>
+            </div>
+
+            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
+              <div style="font-weight: 700; color: #44546A; margin-bottom: 0.35em;">Why it matters for optics</div>
+              <ul style="margin: 0; padding-left: 1.2em;">
+                <li>Optical solitons arise when anomalous GVD exactly cancels SPM-induced chirp — the pulse neither stretches nor compresses</li>
+                <li>Higher-order solitons (N&nbsp;&gt;&nbsp;1) first compress dramatically before splitting — the engine of our compression scheme</li>
+                <li>Fundamental soliton (N = 1): \(u(z,\tau) = \operatorname{sech}(\tau)\,e^{iz/2}\) — envelope fixed, only phase accumulates</li>
+              </ul>
+            </div>
+
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Russell's original observation: August 1834, Union Canal, near Hermiston, Edinburgh. A barge stopped suddenly, the bow wave detached and rolled forward as a solitary hump. Russell followed it on horseback for 1–2 miles.</li>
+              <li>The wave Russell saw was a KdV soliton — it persists because the nonlinear steepening (shallower water under the crest gives it a higher phase velocity) exactly compensates the dispersive spreading of longer wavelengths outrunning shorter ones.</li>
+              <li>The optical analogue is governed by the nonlinear Schrödinger equation (NLS). The balancing acts differ: GVD separates frequencies in time while SPM creates new frequencies — but at the right power (N=1), they cancel perfectly.</li>
+              <li>Mollenauer, Stolen & Gordon (Bell Labs, 1980) demonstrated the first optical soliton in a single-mode fibre. This launched a huge field in fibre-optic communications.</li>
             </ul>
           </aside>
         </section>
@@ -302,16 +806,27 @@
         <section>
           <h3>Group Velocity Dispersion of a Gas-Filled HCF</h3>
 
-          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
-            $$\beta_2(\lambda) \approx \frac{\lambda^3}{4\pi c^2}
-              \left[
-                \underbrace{\rho_r \frac{\partial^2 \chi_e}{\partial \lambda^2}}_{\text{material dispersion}}
-                -
-                \underbrace{\frac{u_{nm}^2}{2\pi^2 a^2}}_{\text{waveguide dispersion}}
-              \right]$$
+          <!-- Top: equation (reduced ~30%) + animation side by side -->
+          <div style="display: flex; gap: 1.3em; align-items: center; margin-top: 0.3em; margin-bottom: 0.5em;">
+
+            <div style="flex: 1.6; text-align: center; font-size: 0.50em;">
+              $$\beta_2(\lambda) \approx \frac{\lambda^3}{4\pi c^2}
+                \left[
+                  \underbrace{\rho_r \frac{\partial^2 \chi_e}{\partial \lambda^2}}_{\text{material dispersion}}
+                  -
+                  \underbrace{\frac{u_{nm}^2}{2\pi^2 a^2}}_{\text{waveguide dispersion}}
+                \right]$$
+            </div>
+
+            <div style="flex: 1.2; min-width: 0;">
+              <img src="figures/soliton_optical_animation.gif"
+                   style="width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+            </div>
+
           </div>
 
-          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
+          <!-- Bottom: three boxes spanning full width -->
+          <div style="display: flex; gap: 1.0em; font-size: 0.41em;">
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
               <h3>Material Dispersion</h3>
               <ul>
@@ -351,49 +866,47 @@
           </aside>
         </section>
 
-        <!-- HCF Power Loss Length — Eq. 2 Travers 2019 -->
+        <!-- Generating a Soliton -->
         <section>
-          <h3>Power Loss Length of a Hollow Capillary Fibre</h3>
+          <h3 style="margin: 0 0 0.5em;">Generating a Soliton</h3>
+          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.41em;">
 
-          <div style="margin: 0.9em auto 0.8em; text-align: center; font-size: 0.78em;">
-            $$L_\text{loss} \approx \frac{4\pi^2 \overbrace{a^3}^{\text{large core}} }{3\, \underbrace{u_{nm}^2}_{\text{mode}} \, \underbrace{\lambda^2}_{\text{wavelength}}}$$
-          </div>
-
-          <div style="display: flex; gap: 1.2em; font-size: 0.41em; margin-top: 0.4em;">
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Core Radius Scaling ($a^3$)</h3>
+              <h3>Requirements</h3>
               <ul>
-                <li>Loss falls <em>cubically</em> with core radius</li>
-                <li>Doubling $a$ → 8× longer $L_\text{loss}$</li>
-                <li>15 µm core: $L_\text{loss} \approx$ 1 cm — unusable</li>
-                <li>125 µm core: $L_\text{loss} \approx$ metres — practical</li>
+                <li>Anomalous dispersion: $\beta_2 < 0$ — set by gas pressure and core size</li>
+                <li>Sufficient nonlinearity: soliton number $N^2 = \gamma P_0 \tau^2 / |\beta_2|$</li>
+                <li>Fibre long enough for dynamics to develop: $L_\text{fibre} > L_\text{fiss}$</li>
+                <li>Low enough loss that the pulse survives to the fission point: $L_\text{fiss} < L_\text{loss}$</li>
               </ul>
             </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>The Core-Size Trade-off</h3>
-              <ul>
-                <li>Large core → low loss, high damage threshold ✓</li>
-                <li>Large core → weak waveguide dispersion ✗</li>
-                <li>HC-PCF: low loss at small core, but limited energy</li>
-                <li>This work: gas pressure compensates reduced dispersion</li>
-              </ul>
-            </div>
+
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
               <h3>Fission vs. Loss Length</h3>
               <ul>
-                <li>Soliton dynamics require $L_\text{fiss} &lt; L_\text{loss}$</li>
-                <li>$L_\text{fiss} \propto a^2$, $L_\text{loss} \propto a^3$ → larger cores always win</li>
-                <li>Shorter pulses reduce $L_\text{fiss}$</li>
-                <li>$N = 6.8$ at 125 µm, 26 fs, 1 bar He</li>
+                <li>$L_\text{fiss} \propto a^2$, $L_\text{loss} \propto a^3$ — larger core always improves the ratio</li>
+                <li>$L_\text{fiss} / L_\text{loss} \propto 1/a$ → no fundamental barrier, just requires large enough core</li>
+                <li>Shorter pulses or higher intensity reduce $L_\text{fiss}$ independently of core size</li>
+                <li>This work: $N = 6.8$, $a = 125\,\mu$m, $\tau = 26$ fs, 1 bar He → $L_\text{fiss} \approx 1.5$ m</li>
               </ul>
             </div>
-          </div>
 
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Coherence Constraints</h3>
+              <ul>
+                <li>$N < 15$: above this, modulational instability destroys pulse-to-pulse coherence</li>
+                <li>Upper intensity limit: ionisation of the fill gas breaks the nonlinear interaction</li>
+                <li>Noble gases preferred: high ionisation threshold, well-characterised $n_2$, no Raman contribution</li>
+                <li>Target: $N \sim 5$–$10$ for efficient, coherent soliton self-compression</li>
+              </ul>
+            </div>
+
+          </div>
           <aside class="notes">
             <ul>
-              <li>This is equation 2 from Travers et al., Nature Photonics 2019. $u_{nm}$ is the mth zero of Bessel function $J_{n-1}$; for HE₁₁, $u_{11} = 2.405$.</li>
-              <li>The $a^3$ scaling is what makes large-core HCF unique — it's a leaky waveguide (EH₁₁ mode), not truly guided, so loss is intrinsically high at small core sizes.</li>
-              <li>The key engineering insight from the paper: $L_\text{fiss} \propto a^2$ but $L_\text{loss} \propto a^3$, so the ratio $L_\text{fiss}/L_\text{loss} \propto 1/a$ always improves with larger core. There is no fundamental barrier to soliton dynamics in HCF — it just requires a large enough core.</li>
+              <li>This slide collects the conditions needed to actually achieve soliton dynamics — bridging the theoretical equations for L_fiss and L_loss to the practical design choices.</li>
+              <li>The scaling L_fiss ∝ a² and L_loss ∝ a³ is the central result of Travers 2019: it proves that soliton dynamics in large-core HCF are not just possible but become easier as the core grows. Prior work used small cores where L_fiss >> L_fibre.</li>
+              <li>Coherence is the practical upper limit on N — shot-to-shot noise grows exponentially above N ~ 15 via modulational instability seeded by quantum noise.</li>
             </ul>
           </aside>
         </section>
@@ -444,197 +957,6 @@
               <li>The ionisation limit on intensity is important — noble gases (He, Ar, Ne) are preferred because they have high ionisation thresholds and well-characterised nonlinearity.</li>
             </ul>
           </aside>
-        </section>
-
-        <!-- Noble Gas Nonlinearity -->
-        <section>
-          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
-
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
-            <thead>
-              <tr style="background: var(--slac-red); color: white;">
-                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">$n_2$ at 1 atm (m² W⁻¹)</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (eV)</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">$3.4 \times 10^{-25}$</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">24.6</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy solitons, VUV RDW</td>
-              </tr>
-              <tr>
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">$1.1 \times 10^{-24}$</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">21.6</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV RDW tuning</td>
-              </tr>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">$9.8 \times 10^{-23}$</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">15.8</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
-              </tr>
-              <tr>
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">$2.7 \times 10^{-22}$</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">14.0</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
-              </tr>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">$8.1 \times 10^{-22}$</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">12.1</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Choosing a Fill Gas</h3>
-              <ul>
-                <li>Higher $n_2$ → shorter $L_\text{fiss}$ and shorter fibre, but lower ionisation threshold limits peak intensity</li>
-                <li>$n_2$ scales linearly with pressure — heavier gases achieve the same nonlinearity at far lower pressure</li>
-                <li>He and Ne preferred for high-energy, high-intensity experiments (RDW into VUV)</li>
-                <li>Ar most common for conventional SPM post-compression at modest energies</li>
-              </ul>
-            </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>At LCLS</h3>
-              <ul>
-                <li>Helium: high ionisation potential tolerates the intensities needed for soliton dynamics at mJ energies</li>
-                <li>Neon: used for shorter-wavelength RDW tuning (&lt;250 nm) at moderate pressures</li>
-                <li>Pressure tuning replaces gas choice as the primary control — same gas, variable dynamics</li>
-                <li>All noble gases are chemically inert — no damage to fibre walls or optical coatings</li>
-              </ul>
-            </div>
-          </div>
-
-          <aside class="notes">
-            <ul>
-              <li>n₂ values from Lehmeier et al., Opt. Commun. 56, 67 (1985) — ref. 76 in Travers 2019. These are at 800 nm, 1 atm.</li>
-              <li>The ~2400× range from He to Xe is enormous. This is why helium experiments require bars of pressure while xenon experiments work at millibar levels.</li>
-              <li>The ionisation potential sets the maximum usable intensity via tunnel ionisation (PPT rate). Helium's 24.6 eV allows intensities up to ~10¹⁵ W/cm² before significant ionisation, where xenon is already heavily ionised at ~10¹³ W/cm².</li>
-              <li>Molecular gases (N₂, H₂) are occasionally used but add Raman contributions to the nonlinearity, which complicates the soliton dynamics.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <!-- SPM Interactive Demo -->
-        <section>
-          <h3>Self-Phase Modulation — Spectral Broadening</h3>
-          <iframe
-            src="interactives/spm_interactive.html"
-            style="width: 100%; height: 560px; border: none;"
-          ></iframe>
-        </section>
-
-        <!-- Pulse Compression -->
-        <section>
-          <h3 style="margin: 0 0 0.4em;">Pulse Compression</h3>
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.42em;">
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>The Problem</h3>
-              <ul>
-                <li>Propagation through any dispersive medium stretches pulses in time</li>
-                <li>Glass optics introduce positive group delay dispersion (GDD) — red frequencies arrive before blue</li>
-                <li>Longer pulse duration reduces peak intensity, limiting nonlinear processes and damage thresholds</li>
-                <li>Goal: achieve transform-limited (shortest possible) pulses at the target</li>
-              </ul>
-            </div>
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Two-Stage HCF Compression</h3>
-              <ul>
-                <li><strong>Stage 1 — Spectral broadening:</strong> pulse propagates through gas-filled HCF; SPM creates new frequency components, broadening the spectrum</li>
-                <li><strong>Stage 2 — Dispersion compensation:</strong> chirped mirrors or grating pairs apply negative GDD, realigning frequency components in time</li>
-                <li>Result: pulse duration compressed by 10–100×, approaching the few-cycle regime (&lt; 10 fs)</li>
-                <li>HCF enables high-energy inputs (&gt; mJ) without damage — impossible in solid-core fiber</li>
-              </ul>
-            </div>
-
-          </div>
-          <p style="margin-top: 0.5em; font-size: 0.39em; color: #666;">
-            The spectral phase imprinted by SPM (see previous slide) is the bandwidth
-            resource that dispersion compensation converts into temporal compression.
-          </p>
-        </section>
-
-        <!-- Spectral Phase Taylor Expansion -->
-        <section>
-          <h3>Spectral Phase — Taylor Expansion</h3>
-
-          <div style="margin: 1.2em auto 1em; text-align: center; font-size: 0.62em;">
-            $$\varphi(\omega) = \varphi_0
-              + \underbrace{\left.\frac{d\varphi}{d\omega}\right|_{\omega_0}}_{\mathrm{GD}} \!(\omega - \omega_0)
-              + \frac{1}{2}\underbrace{\left.\frac{d^2\varphi}{d\omega^2}\right|_{\omega_0}}_{\mathrm{GDD}} \!(\omega - \omega_0)^2
-              + \frac{1}{6}\underbrace{\left.\frac{d^3\varphi}{d\omega^3}\right|_{\omega_0}}_{\mathrm{TOD}} \!(\omega - \omega_0)^3
-              + \cdots$$
-          </div>
-
-          <div style="display: flex; gap: 1.2em; font-size: 0.40em; margin-top: 0.6em;">
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>$\varphi_0$ — Carrier-Envelope Phase</h3>
-              <ul>
-                <li>Absolute phase offset between the carrier wave and the pulse envelope</li>
-                <li>Shifts all frequencies equally — no effect on pulse shape or duration</li>
-                <li>Critical only for few-cycle pulses where CEP changes the peak electric field</li>
-              </ul>
-            </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>GD — Group Delay</h3>
-              <ul>
-                <li>Linear phase term: shifts the pulse envelope in time without distortion</li>
-                <li>Units: fs (or s) — the arrival time of the pulse centre</li>
-                <li>Irrelevant to pulse duration; sets the transit time through a medium</li>
-              </ul>
-            </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>GDD — Group Delay Dispersion</h3>
-              <ul>
-                <li>Quadratic phase: different frequencies travel at different group velocities</li>
-                <li>Units: fs² — positive GDD stretches the pulse (red before blue in silica)</li>
-                <li>Dominant term in most optical systems; compensated by chirped mirrors or gratings</li>
-              </ul>
-            </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>TOD — Third-Order Dispersion</h3>
-              <ul>
-                <li>Cubic phase: creates asymmetric satellite pulses and a pedestal in time</li>
-                <li>Units: fs³ — becomes significant for broadband (&lt;30 fs) pulses</li>
-                <li>Residual TOD after GDD compensation is often the limit on compressed pulse quality</li>
-              </ul>
-            </div>
-          </div>
-
-          <aside class="notes">
-            <ul>
-              <li>The Taylor expansion is the universal language of pulse propagation — every dispersive element (glass, fibre, air) can be characterised by its GDD and TOD coefficients.</li>
-              <li>For silica glass at 800 nm: GDD ≈ +36 fs²/mm, TOD ≈ +27 fs³/mm. A 1 mm window already adds enough GDD to stretch a 30 fs pulse to ~40 fs.</li>
-              <li>The next slide lets you dial in GDD and TOD interactively and see the effect on both the spectral phase and temporal pulse shape.</li>
-              <li>Note that SPM adds a nonlinear phase φ_NL(t) = γ P(t) L in the time domain — not a simple polynomial in ω. It broadens the spectrum but the resulting spectral phase is not simply GDD or TOD.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <!-- Dispersion Interactive Demo -->
-        <section>
-          <h3>Dispersion — GDD &amp; TOD on an Ultrafast Pulse</h3>
-          <iframe
-            src="interactives/dispersion_interactive.html"
-            style="width: 100%; height: 560px; border: none;"
-          ></iframe>
         </section>
 
         <!-- Soliton Introduction -->
@@ -690,6 +1012,98 @@
           </p>
         </section>
 
+        <!-- Upcoming: RDW Experiment [placeholder] -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Upcoming — [RDW Experiment Name]</h3>
+          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.42em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Science Motivation</h3>
+              <ul>
+                <li>[Science question being addressed — TBD]</li>
+                <li>[Why RDW? wavelength tunability / duration — TBD]</li>
+                <li>[Target process / timescale — TBD]</li>
+                <li>[Beamline / sample system — TBD]</li>
+              </ul>
+            </div>
+
+            <div style="flex: 1; border: 2px dashed #aaa; border-radius: 8px; padding: 2em; text-align: center; color: #888;">
+              <p style="font-size: 1.1em; margin: 0 0 0.5em; font-weight: bold;">Expected output / simulation</p>
+              <p>[RDW spectrum, tuning curve, or pulse — figure TBD]</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Noble Gas Nonlinearity (reference copy) -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
+            <thead>
+              <tr style="background: var(--slac-red); color: white;">
+                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (3-photon λ)</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">24.6 eV (151.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy, high-intensity</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">21.6 eV (172.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV generation</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">15.8 eV (235.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">14.0 eV (265.7 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">12.1 eV (307.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Choosing a Fill Gas</h3>
+              <ul>
+                <li>Working in the IR requires a larger core → weaker effective nonlinearity → compensate with a heavier gas (Kr, Xe) or higher pressure</li>
+                <li>$n_2$ scales linearly with pressure — Xe achieves the same nonlinearity as Ar at ~8× lower pressure</li>
+                <li>He and Ne for high-energy / high-intensity experiments where Xe or Ar would ionise</li>
+                <li>Ionisation potential sets the ceiling: lower IP gas = lower maximum intensity before plasma formation</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>At LCLS</h3>
+              <ul>
+                <li>Helium: high ionisation potential tolerates the intensities needed at mJ energies</li>
+                <li>Neon: used for shorter-wavelength UV generation (&lt;250 nm) at moderate pressures</li>
+                <li>Pressure tuning replaces gas choice as the primary control — same gas, variable dynamics</li>
+                <li>All noble gases are chemically inert — no damage to fibre walls or optical coatings</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- Conclusion and Outlook -->
         <section>
           <h3 style="margin: 0 0 0.4em;">Conclusions &amp; Outlook</h3>
@@ -723,6 +1137,60 @@
               <li>Gas pressure tuning is a practical knob: higher pressure increases nonlinearity (more SPM, shorter RDW wavelength) and changes the dispersion landscape.</li>
             </ul>
           </aside>
+        </section>
+
+        <!-- Acknowledgements -->
+        <section>
+          <h3 style="margin: 0 0 0.7em;">Acknowledgements</h3>
+          <div style="display: flex; gap: 1.1em; font-size: 0.41em; align-items: flex-start;">
+
+            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.85em 1em;">
+              <div style="font-weight: 700; color: #8C1515; margin-bottom: 0.5em;">LCLS Laser Sciences</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>Joe Robinson</li>
+                <li>Kirk Larsen</li>
+                <li>Brian Kaufman</li>
+                <li>Mat Britton</li>
+              </ul>
+            </div>
+
+            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.85em 1em;">
+              <div style="font-weight: 700; color: #8C1515; margin-bottom: 0.5em;">LCLS Laser Optical Engineering</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>Gwen Wang</li>
+              </ul>
+              <div style="font-weight: 700; color: #8C1515; margin-top: 0.8em; margin-bottom: 0.5em;">LCLS Laser Systems</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>Donny Magana</li>
+              </ul>
+              <div style="font-weight: 700; color: #8C1515; margin-top: 0.8em; margin-bottom: 0.5em;">UC Davis</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>Ruaridh Forbes</li>
+              </ul>
+            </div>
+
+            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.85em 1em;">
+              <div style="font-weight: 700; color: #8C1515; margin-bottom: 0.5em;">Heriot-Watt University (UK)</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>John Travers</li>
+                <li>Chris Brahms</li>
+                <li>Nikoleta Kotsina</li>
+                <li>Michael Heynck</li>
+              </ul>
+              <div style="font-weight: 700; color: #8C1515; margin-top: 0.8em; margin-bottom: 0.5em;">STFC (UK)</div>
+              <ul style="margin: 0; padding-left: 1.2em; line-height: 1.7;">
+                <li>Bruce Weaver</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <!-- BACKUP SLIDES                                                       -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+        <section>
+          <h2 style="color: #aaa;">Backup Slides</h2>
         </section>
 
       </div><!-- /.slides -->

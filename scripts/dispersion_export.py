@@ -69,7 +69,7 @@ N_GDD = 21
 N_TOD = 21
 
 gdd_values = np.linspace(0,    3000, N_GDD)   # fs²
-tod_values = np.linspace(-30000, 30000, N_TOD)  # fs³; index 10 → TOD = 0
+tod_values = np.linspace(-100000, 100000, N_TOD)  # fs³; index 10 → TOD = 0
 
 GDD_INIT = 0          # index
 TOD_INIT = N_TOD // 2  # index → TOD = 0
