@@ -128,7 +128,7 @@ for i, (psi, color) in enumerate(zip(SELECTED_PSI, COLORS)):
     spec = norm[mask]
     spec = spec / spec.max()
 
-    offset = (len(SELECTED_PSI) - 1 - i) * STACK_GAP
+    offset = i * STACK_GAP
 
     # ── left: stacked spectrum ────────────────────────────────────────────
     ax_s.fill_between(wl_plt, offset, offset + spec,

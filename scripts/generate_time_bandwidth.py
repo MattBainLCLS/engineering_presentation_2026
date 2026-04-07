@@ -16,12 +16,16 @@ import numpy as np
 from scipy.signal import hilbert
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Lato', 'Arial', 'Helvetica Neue', 'Helvetica', 'DejaVu Sans'],
+})
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
 BORDER   = "#44546A"
-NARROW_C = "#E65100"   # orange — narrow bandwidth / long pulse
-BROAD_C  = "#1565C0"   # blue   — broad bandwidth / short pulse
+NARROW_C = "#E04F39"   # SPIRITED — narrow bandwidth / long pulse
+BROAD_C  = "#4298B5"   # SKY      — broad bandwidth / short pulse
 
 # ── Physical parameters ───────────────────────────────────────────────────────
 c       = 0.3            # µm / fs  (speed of light)
@@ -76,18 +80,15 @@ ax_l = fig.add_subplot(gs[0])
 
 cmap        = plt.cm.coolwarm
 offset_step = 2.6
-t_left_lim  = (-20.0, 26.0)   # extra right margin for ω labels
+t_left_lim  = (-20.0, 20.0)
 
 top_offset  = (N_stack - 1) * offset_step
 mid_offset  = top_offset / 2
 
 for i in range(N_stack):
     offset = (N_stack - 1 - i) * offset_step
-    color  = cmap(i / (N_stack - 1))
+    color  = cmap(1 - i / (N_stack - 1))
     ax_l.plot(t, comps_stack[i] + offset, color=color, lw=1.1, alpha=0.9)
-    ax_l.text(22.5, offset,
-              f"$\\omega_{{{i+1}}}$", va='center', fontsize=8,
-              color=color, ha='left')
 
 # t = 0 dashed line
 ax_l.axvline(0, color='gray', lw=1.0, linestyle='--', alpha=0.65, zorder=0)
@@ -149,11 +150,11 @@ def plot_pulse(ax, t, field, envelope, color, title_str):
 
 plot_pulse(fig.add_subplot(gs_r[0]),
            t, sum_narrow, env_narrow, NARROW_C,
-           f"Narrow bandwidth  ({N_narrow} components) → long pulse")
+           "Narrow bandwidth  (fewer components) → long pulse")
 
 plot_pulse(fig.add_subplot(gs_r[1]),
            t, sum_broad, env_broad, BROAD_C,
-           f"Broad bandwidth  ({N_broad} components) → short pulse")
+           "Broad bandwidth  (many components) → short pulse")
 
 # ── Save ──────────────────────────────────────────────────────────────────────
 out = "figures/time_bandwidth.svg"

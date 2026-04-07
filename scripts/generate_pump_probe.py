@@ -9,20 +9,26 @@ Right : Temporal pulse diagram with updated durations (50 fs pump, 20 fs X-ray).
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Lato', 'Arial', 'Helvetica Neue', 'Helvetica', 'DejaVu Sans'],
+})
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as mpatches
 
 BORDER   = "#44546A"
-PUMP_C   = "#E65100"   # deep orange  — optical pump
-XRAY_C   = "#4527A0"   # deep purple  — X-ray probe
-SAMPLE_C = "#78909C"   # slate        — sample
-SIGNAL_C = "#2E7D32"   # green        — sample response
+PUMP_C   = "#E04F39"   # SPIRITED — optical pump
+XRAY_C   = "#53284F"   # PURPLE   — X-ray probe
+SAMPLE_C = "#7F7776"   # STONE    — detector (repurposed)
+WATER_FILL = "#85C1E9"  # light blue — sample fill
+WATER_EDGE = "#1A5276"  # dark navy  — sample stroke
+SIGNAL_C = "#279989"   # PALO VERDE — sample response
 BG       = "white"
 
-fig = plt.figure(figsize=(13, 4.8))
+fig = plt.figure(figsize=(13, 5.76))
 fig.patch.set_facecolor(BG)
-gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1.15, 1.0], wspace=0.28)
+gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1.58, 1.0], wspace=0.28)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Helper: draw a Gaussian pulse envelope along a straight beam path
@@ -79,7 +85,7 @@ sx, sy  = 5.1, 3.8
 sw, sh  = 1.0, 1.5
 sample  = mpatches.FancyBboxPatch((sx - sw/2, sy - sh/2), sw, sh,
                                    boxstyle="round,pad=0.08",
-                                   fc=SAMPLE_C, ec=BORDER, lw=1.8, zorder=5)
+                                   fc=WATER_FILL, ec=WATER_EDGE, lw=1.8, zorder=5)
 ax.add_patch(sample)
 ax.text(sx, sy, "Sample", ha='center', va='center', fontsize=8.5,
         color='white', fontweight='bold', zorder=6)
@@ -123,10 +129,10 @@ draw_pulse(ax, [sx + sw/2 + 0.05, sy - 0.05], [det_x - 0.05, sy - 0.05],
 
 det = mpatches.FancyBboxPatch((det_x, sy - 0.75), 0.62, 1.45,
                                boxstyle="round,pad=0.06",
-                               fc='#EDE7F6', ec=XRAY_C, lw=1.5, zorder=5)
+                               fc=SAMPLE_C, ec=BORDER, lw=1.5, zorder=5)
 ax.add_patch(det)
 ax.text(det_x + 0.31, sy - 0.02, "Detector", ha='center', va='center',
-        fontsize=7.5, color=XRAY_C, rotation=90, fontweight='bold')
+        fontsize=7.5, color='white', rotation=90, fontweight='bold', zorder=6)
 
 # ── Δt callout ────────────────────────────────────────────────────────────────
 ax.annotate(r"delay  $\Delta t$",

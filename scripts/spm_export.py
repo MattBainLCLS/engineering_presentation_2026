@@ -2,10 +2,11 @@
 spm_export.py
 Generates spm_interactive.html — a Plotly interactive showing SPM spectral
 broadening. X-axis: wavelength in nm centred at 1030 nm.
-Slider: normalised peak intensity 0 → 1.
+Slider: normalised peak intensity 0 → 1 in 0.02 steps, ticks at 0.2 intervals.
+Uses a custom HTML range input to avoid Plotly's built-in slider limitations.
 """
+import json
 import numpy as np
-import plotly.graph_objects as go
 
 # ── Physical constants & pulse parameters ─────────────────────────────────────
 c_nm_THz = 2.99792458e5    # nm·THz  (speed of light)
@@ -19,18 +20,16 @@ B_max    = 5 * np.pi        # max B-integral (normalised intensity = 1)
 
 # ── Time & frequency arrays ───────────────────────────────────────────────────
 N      = 8192
-t      = np.linspace(-1200.0, 1200.0, N)   # fs  (wider window for longer pulse)
+t      = np.linspace(-1200.0, 1200.0, N)
 dt     = t[1] - t[0]
 
-E0 = np.exp(-t**2 / (2 * tau**2))  # Gaussian field envelope
-I0 = E0**2                           # normalised intensity profile
+E0 = np.exp(-t**2 / (2 * tau**2))
+I0 = E0**2
 
-# Frequencies in THz (dt in fs → raw fftfreq in fs⁻¹ = 1000 THz)
-freq_rel_THz = np.fft.fftshift(np.fft.fftfreq(N, d=dt)) * 1e3  # THz offset from ν₀
-nu_THz       = nu0_THz + freq_rel_THz                            # absolute THz
-lam_nm       = c_nm_THz / nu_THz                                 # nm
+freq_rel_THz = np.fft.fftshift(np.fft.fftfreq(N, d=dt)) * 1e3
+nu_THz       = nu0_THz + freq_rel_THz
+lam_nm       = c_nm_THz / nu_THz
 
-# Display window and sort by increasing wavelength
 lam_min, lam_max = 900.0, 1200.0
 mask     = (lam_nm >= lam_min) & (lam_nm <= lam_max)
 lam_disp = np.sort(lam_nm[mask])
@@ -38,80 +37,113 @@ sort_idx = np.argsort(lam_nm[mask])
 
 
 def compute_spectrum(I_norm: float) -> np.ndarray:
-    B    = I_norm * B_max
-    E    = E0 * np.exp(1j * B * I0)
-    S    = np.abs(np.fft.fftshift(np.fft.fft(E))) ** 2
-    S   /= S.max()
+    B  = I_norm * B_max
+    E  = E0 * np.exp(1j * B * I0)
+    S  = np.abs(np.fft.fftshift(np.fft.fft(E))) ** 2
+    S /= S.max()
     return S[mask][sort_idx]
 
 
-# ── Pre-compute one trace per slider step ─────────────────────────────────────
-I_values = np.linspace(0, 1, 60)
+# ── Pre-compute spectra ───────────────────────────────────────────────────────
+I_values = np.round(np.arange(0, 1.001, 0.02), 10)   # 0.00, 0.02, …, 1.00
+spectra  = [compute_spectrum(v).tolist() for v in I_values]
+x_data   = lam_disp.tolist()
 
-traces = []
-for i, I_norm in enumerate(I_values):
-    traces.append(
-        go.Scatter(
-            x=lam_disp,
-            y=compute_spectrum(I_norm),
-            mode="lines",
-            line=dict(color="steelblue", width=2.5),
-            visible=(i == 0),
-            name=f"I = {I_norm:.2f}",
-        )
-    )
+# ── Build HTML ────────────────────────────────────────────────────────────────
+html = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script charset="utf-8"
+  src="https://cdn.plot.ly/plotly-3.4.0.min.js"
+  integrity="sha256-KEmPoupLpFyGMyGAiOsiNDbKDKAvxXAn/W+oQa0ZAfk="
+  crossorigin="anonymous"></script>
+<style>
+  html, body {{ margin: 0; padding: 0; height: 100%; font-family: sans-serif; }}
+  #plot {{ width: 100%; height: calc(100% - 80px); min-height: 300px; }}
+  #slider-wrap {{
+    padding: 6px 48px 4px;
+    box-sizing: border-box;
+  }}
+  #current-value {{
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 4px;
+  }}
+  #intensity-slider {{
+    width: 100%;
+    cursor: pointer;
+  }}
+  .tick-labels {{
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #666;
+    margin-top: 2px;
+    padding: 0 1px;
+  }}
+</style>
+</head>
+<body>
+  <div id="plot"></div>
+  <div id="slider-wrap">
+    <div id="current-value">Normalised intensity = 0.00</div>
+    <input type="range" id="intensity-slider" min="0" max="{len(I_values)-1}" step="1" value="0">
+    <div class="tick-labels">
+      <span>0.0</span><span>0.2</span><span>0.4</span><span>0.6</span><span>0.8</span><span>1.0</span>
+    </div>
+  </div>
 
-# ── Slider ────────────────────────────────────────────────────────────────────
-steps = [
-    dict(
-        method="update",
-        args=[{"visible": [j == i for j in range(len(traces))]}],
-        label=f"{v:.2f}",
-    )
-    for i, v in enumerate(I_values)
-]
+<script>
+var xData   = {json.dumps(x_data)};
+var spectra = {json.dumps(spectra)};
+var iValues = {json.dumps([round(float(v), 2) for v in I_values])};
 
-sliders = [
-    dict(
-        active=0,
-        steps=steps,
-        currentvalue=dict(
-            prefix="Normalised intensity = ",
-            font=dict(size=14),
-        ),
-        pad=dict(t=65, b=10),
-        len=0.9,
-        x=0.05,
-    )
-]
+var layout = {{
+  xaxis: {{
+    title: "Wavelength (nm)",
+    range: [900, 1200],
+    showgrid: true,
+    gridcolor: "#eeeeee"
+  }},
+  yaxis: {{
+    title: "Spectral Intensity (normalised)",
+    range: [-0.03, 1.15],
+    showgrid: true,
+    gridcolor: "#eeeeee"
+  }},
+  title: {{
+    text: "Self-Phase Modulation \u2014 Spectral Broadening",
+    x: 0.5,
+    font: {{ size: 16 }}
+  }},
+  showlegend: false,
+  template: "simple_white",
+  margin: {{ t: 50, b: 50, l: 60, r: 20 }}
+}};
 
-# ── Layout ────────────────────────────────────────────────────────────────────
-fig = go.Figure(data=traces)
-fig.update_layout(
-    sliders=sliders,
-    xaxis=dict(
-        title="Wavelength (nm)",
-        range=[900, 1200],
-        showgrid=True,
-        gridcolor="#eeeeee",
-    ),
-    yaxis=dict(
-        title="Spectral Intensity (normalised)",
-        range=[-0.03, 1.15],
-        showgrid=True,
-        gridcolor="#eeeeee",
-    ),
-    title=dict(
-        text="Self-Phase Modulation — Spectral Broadening",
-        x=0.5,
-        font=dict(size=16),
-    ),
-    showlegend=False,
-    template="simple_white",
-    margin=dict(t=50, b=130, l=60, r=20),
-)
+Plotly.newPlot("plot", [{{
+  x: xData,
+  y: spectra[0],
+  mode: "lines",
+  line: {{ color: "#4298B5", width: 2.5 }}
+}}], layout, {{responsive: true}});
 
-# ── Export ────────────────────────────────────────────────────────────────────
+var slider  = document.getElementById("intensity-slider");
+var display = document.getElementById("current-value");
+
+slider.addEventListener("input", function() {{
+  var idx    = parseInt(this.value);
+  var I_norm = iValues[idx];
+  display.textContent = "Normalised intensity = " + I_norm.toFixed(2);
+  Plotly.restyle("plot", {{ y: [spectra[idx]] }}, [0]);
+}});
+</script>
+</body>
+</html>"""
+
 out = "interactives/spm_interactive.html"
-fig.write_html(out, include_plotlyjs="cdn")
+with open(out, "w") as f:
+    f.write(html)
 print(f"Saved → {out}")

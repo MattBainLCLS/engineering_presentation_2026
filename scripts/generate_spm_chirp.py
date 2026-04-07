@@ -9,14 +9,18 @@ Output: figures/spm_chirp.svg
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Lato', 'Arial', 'Helvetica Neue', 'Helvetica', 'DejaVu Sans'],
+})
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.collections import LineCollection
 from matplotlib.colors import LinearSegmentedColormap
 
 BORDER = "#44546A"
-RED_C  = "#C62828"
-BLUE_C = "#1565C0"
+RED_C  = "#8C1515"
+BLUE_C = "#4298B5"
 
 # ── SPM physics ───────────────────────────────────────────────────────────────
 t  = np.linspace(-2.5, 2.5, 1000)
@@ -40,7 +44,7 @@ E_ch  = A_ch * np.cos(omega_0 * t_pulse + beta * t_pulse**2)
 w_inst = omega_0 + 2 * beta * t_pulse   # positive: reds at t<0, blues at t>0
 
 # Colour map: low freq → red, high freq → blue
-cmap_rb = LinearSegmentedColormap.from_list('rb', [RED_C, '#9C27B0', BLUE_C])
+cmap_rb = LinearSegmentedColormap.from_list('rb', [RED_C, '#53284F', BLUE_C])
 
 # Coloured LineCollection for chirped pulse field
 sig_mask = A_ch > 0.03
@@ -69,26 +73,26 @@ ax1.axvspan(-2.5, 0, alpha=0.07, color=RED_C,  zorder=0)
 ax1.axvspan(0, 2.5,  alpha=0.07, color=BLUE_C, zorder=0)
 
 # Intensity envelope
-ax1.fill_between(t, I, alpha=0.18, color='#E65100')
-ax1.plot(t, I, color='#E65100', lw=2.2, label="$I(t)$")
-ax1.set_ylabel("Intensity  $I(t)$", fontsize=8, color='#E65100')
+ax1.fill_between(t, I, alpha=0.18, color='#E04F39')
+ax1.plot(t, I, color='#E04F39', lw=2.2, label="$I(t)$")
+ax1.set_ylabel("Intensity  $I(t)$", fontsize=8, color='#E04F39')
 ax1.set_ylim(-0.08, 1.72)
 ax1.set_yticks([0, 1])
-ax1.set_yticklabels(["0", "$I_0$"], fontsize=8, color='#E65100')
-ax1.tick_params(axis='y', colors='#E65100', length=3)
-ax1.spines['left'].set_color('#E65100')
+ax1.set_yticklabels(["0", "$I_0$"], fontsize=8, color='#E04F39')
+ax1.tick_params(axis='y', colors='#E04F39', length=3)
+ax1.spines['left'].set_color('#E04F39')
 ax1.spines[['top', 'right', 'bottom']].set_visible(False)
 
 # δω curve
 peak_dw = np.max(np.abs(dw))
-ax2.plot(t, dw, color='#1565C0', lw=2.2, linestyle='--')
-ax2.axhline(0, color='#1565C0', lw=0.6, linestyle=':', alpha=0.5)
-ax2.set_ylabel(r"$\delta\omega(t)$", fontsize=8, color='#1565C0')
+ax2.plot(t, dw, color='#4298B5', lw=2.2, linestyle='--')
+ax2.axhline(0, color='#4298B5', lw=0.6, linestyle=':', alpha=0.5)
+ax2.set_ylabel(r"$\delta\omega(t)$", fontsize=8, color='#4298B5')
 ax2.set_ylim(-peak_dw * 1.72, peak_dw * 1.72)
 ax2.set_yticks([-peak_dw, 0, peak_dw])
-ax2.set_yticklabels(["blue\nshift", "0", "red\nshift"], fontsize=7.5, color='#1565C0')
-ax2.tick_params(axis='y', colors='#1565C0', length=3)
-ax2.spines['right'].set_color('#1565C0')
+ax2.set_yticklabels(["red\nshift", "0", "blue\nshift"], fontsize=7.5, color='#4298B5')
+ax2.tick_params(axis='y', colors='#4298B5', length=3)
+ax2.spines['right'].set_color('#4298B5')
 ax2.spines[['top', 'left', 'bottom']].set_visible(False)
 
 
@@ -157,6 +161,7 @@ ax_ch.text(-4.0, -1.28, "low $\\omega$\n(red)", ha='center', fontsize=7.5,
            color=RED_C, fontweight='bold')
 ax_ch.text( 4.0, -1.28, "high $\\omega$\n(blue)", ha='center', fontsize=7.5,
            color=BLUE_C, fontweight='bold')
+
 
 ax_ch.set_xlim(*xlim)
 ax_ch.set_ylim(-1.55, 2.10)
