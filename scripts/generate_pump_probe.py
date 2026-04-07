@@ -91,7 +91,7 @@ pump_end = [sx - sw/2 - 0.05, sy + sh * 0.28]
 # Wider pulse (50 fs pump)
 draw_pulse(ax, pump_src, pump_end,
            env_fwhm_frac=0.14, amplitude=0.52,
-           color=PUMP_C, lw=2.2, center_frac=0.52)
+           color=PUMP_C, lw=2.2, center_frac=0.52, alpha_fill=0)
 
 ax.text(0.45, 7.25,
         "Optical pump  (1030 nm, ~50 fs)",
@@ -139,10 +139,6 @@ ax.annotate(r"delay  $\Delta t$",
             bbox=dict(boxstyle='round,pad=0.3', fc='white',
                       ec=BORDER, lw=0.9, alpha=0.92))
 
-# ── Bottom note ───────────────────────────────────────────────────────────────
-ax.text(5.0, 0.75,
-        r"Time resolution $\approx$ max(pump, probe) duration",
-        ha='center', va='bottom', fontsize=7.8, color=BORDER, style='italic')
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # RIGHT: Temporal pulse diagram

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</title>
+    <title>Applications of Hollow Core Fibers to Ultrafast Laser Pulses</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -127,6 +127,29 @@
         pointer-events: none;
       }
 
+      /* ── Slide footnotes (hidden in-place; content copied to fixed overlay) ── */
+      .slide-footnote { display: none; }
+
+      #footnote-overlay {
+        position: fixed;
+        bottom: 10px;
+        height: 40px;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        font-size: 19px;
+        line-height: 1;
+        z-index: 210;
+        pointer-events: auto;
+      }
+      #footnote-overlay a {
+        color: #aaa;
+        text-decoration: none;
+      }
+
     </style>
   </head>
   <body>
@@ -145,7 +168,7 @@
             style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.12; pointer-events:none;"
           />
           <div style="position:relative; z-index:1; padding-top: 1.2em;">
-            <h1>Applications of Hollow Core Fibers to Ultrafast Laser Pulse</h1>
+            <h1>Applications of Hollow Core Fibers to Ultrafast Laser Pulses</h1>
             <hr class="title-divider" />
             <p>LCLS Engineering Seminar Series</p>
             <p>Matt Bain &nbsp;|&nbsp; March 23, 2026</p>
@@ -182,13 +205,13 @@
           <h3 style="margin: 0 0 0.3em;">Motivation — Why Ultrafast Pulses at LCLS?</h3>
           <img src="figures/pump_probe.svg"
                style="width: 100%; max-height: 300px; object-fit: contain; display: block;" />
-          <div style="font-size: 0.38em; margin-top: 0.4em;">
-            <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
-              <h3>The Engineering Problem</h3>
+          <div style="font-size: 0.38em; margin-top: 0.4em; display: flex; justify-content: center;">
+            <div class="col-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em; width: fit-content; text-align: left;">
+              <h3 style="text-align: left;">The Goal</h3>
               <ul>
-                <li>Standard amplifiers produce ~100 fs to ps pulses — not short enough to resolve fast dynamics</li>
-                <li>High-energy pulses (&gt;mJ) damage solid-core fibres before useful spectral broadening occurs</li>
-                <li>Hollow core fibres: light travels through gas — high damage threshold, tuneable dispersion, enabling soliton-driven compression to &lt;20 fs</li>
+                <li>Pulse duration short enough to resolve ultrafast dynamics — target &lt;20 fs</li>
+                <li>Sufficient pulse energy to drive nonlinear excitation in experiments</li>
+                <li>Compatible with LCLS-II repetition rates (up to MHz)</li>
               </ul>
             </div>
           </div>
@@ -443,6 +466,7 @@
           <p style="font-size: 0.37em; color: #666; margin-top: 0.4em; text-align: center;">
             Physically stretching the fibre keeps it straight, maintaining near-grazing angles of incidence at the glass wall where Fresnel reflectance approaches unity — reducing cumulative bounce losses along the fibre length.
           </p>
+          <p class="slide-footnote"><a href="https://doi.org/10.1364/AO.47.003264"><em>Appl. Opt.</em> <strong>47</strong>, 3264–3268 (2008)</a></p>
           <aside class="notes">
             <ul>
               <li>A hollow capillary is an inherently leaky waveguide: light is guided by near-total reflection at the inner glass surface at very shallow (grazing) angles.</li>
@@ -547,7 +571,7 @@
             </div>
 
             <div style="flex: 1;">
-              <img src="figures/opa_fig3.png" style="width: 100%; border-radius: 4px;" />
+              <img src="figures/opa_fig3.png" style="width: 90%; border-radius: 4px;" />
               <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5;">
                 <strong>Wavelength tunability at 1 bar Kr.</strong>
                 Consistent ~17 nm FWHM bandwidth and FTL of 18–25 fs across the full OPA tuning range (370–450 nm) —
@@ -562,6 +586,7 @@
             <span>Post-compression: prism pair or chirped mirrors → <strong>15–30 fs</strong></span>
             <span style="color: #8C1515;">Kaufman, Larsen, … Bain et al., <em>Opt. Lett.</em> 2025</span>
           </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1364/OL.575959"><em>Opt. Lett.</em> <strong>50</strong>, 7464–7467 (2025)</a></p>
           <aside class="notes">
             <ul>
               <li>This is our own work — demonstrating SPM broadening of the OPA second harmonic in a stretched hollow capillary fiber filled with krypton.</li>
@@ -672,36 +697,32 @@
         <section>
           <h3 style="margin: 0 0 0.35em;">Post-Compression</h3>
           <img src="figures/compressor_schematics.svg"
-               style="width: 92%; max-height: 200px; object-fit: contain; display: block; margin: 0 auto 0.5em;" />
-          <div style="display: flex; gap: 1.0em; align-items: flex-start; font-size: 0.38em; margin-top: 0.2em;">
+               style="width: 92%; max-height: 300px; object-fit: contain; display: block; margin: 0 auto 0.4em;" />
+          <div style="display: flex; gap: 1.0em; align-items: stretch; font-size: 0.38em; margin-top: 0.2em;">
 
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
               <h3>The Concept</h3>
               <ul>
-                <li>SPM broadens the spectrum but adds a positive <em>chirp</em> — red frequencies in front, blue behind</li>
-                <li>The pulse carries more bandwidth than its duration requires: it is not transform-limited</li>
-                <li>Applying equal and opposite (negative) GDD realigns all frequency components in time → compressed pulse</li>
-                <li>Quality of compression limited by residual higher-order dispersion (TOD, FOD)</li>
+                <li>SPM adds positive chirp — apply negative GDD to recompress</li>
+                <li>Quality limited by residual higher-order dispersion</li>
               </ul>
             </div>
 
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
               <h3>Prism Compressor</h3>
               <ul>
-                <li>Angular dispersion from two prisms introduces negative GDD</li>
-                <li>GDD continuously tunable by adjusting prism separation or insertion depth</li>
-                <li>Low loss, broadband — suited to visible/UV where chirped mirrors are limited</li>
-                <li>Introduces TOD with the same sign as GDD — can limit compression quality for very broad spectra</li>
+                <li>Tunable negative GDD via prism separation</li>
+                <li>Low loss, broadband — preferred for visible/UV</li>
+                <li>TOD not compensated — limits achievable pulse duration</li>
               </ul>
             </div>
 
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
               <h3>Chirped Mirror Compressor</h3>
               <ul>
-                <li>Multilayer dielectric coating: longer wavelengths penetrate deeper → arrive later → negative GDD</li>
-                <li>Fixed GDD per bounce (~−40 to −100 fs² per reflection); dispersion controlled by number of bounces</li>
-                <li>Compact, low loss, negligible TOD — ideal for few-cycle compression in NIR</li>
-                <li>Requires pairing with thin glass wedges for fine GDD adjustment</li>
+                <li>Fixed GDD per bounce from multilayer coating</li>
+                <li>Compact, negligible TOD — preferred for NIR</li>
+                <li>TOD compensation can be engineered in</li>
               </ul>
             </div>
 
@@ -713,6 +734,29 @@
               <li>Chirped mirrors dominate in the NIR (700–1100 nm) where high-quality designs are commercially available. They're compact and introduce negligible TOD.</li>
             </ul>
           </aside>
+        </section>
+
+        <!-- Post-Compression Results -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Post-Compression Results</h3>
+          <div style="display: flex; gap: 1.4em; align-items: center;">
+
+            <div style="flex: 1;">
+              <img src="figures/OPA_compressed_prism.png" style="width: 100%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5; text-align: center;">
+                <strong>Prism compressor</strong> — compression to <strong>30 fs</strong>
+              </p>
+            </div>
+
+            <div style="flex: 1;">
+              <img src="figures/OPA_compressed_chirped_mirrors.png" style="width: 100%; border-radius: 4px;" />
+              <p style="font-size: 0.33em; color: #555; margin-top: 0.2em; line-height: 1.5; text-align: center;">
+                <strong>Chirped mirror compressor</strong> — increased bandwidth compressed to <strong>15 fs</strong>
+              </p>
+            </div>
+
+          </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1364/OL.575959"><em>Opt. Lett.</em> <strong>50</strong>, 7464–7467 (2025)</a></p>
         </section>
 
         <!-- CXI IRF — HCF + LCLS Low Charge -->
@@ -738,13 +782,14 @@
             </div>
 
           </div>
+          <p class="slide-footnote">Just accepted — Optica (2026)</p>
         </section>
 
         <!-- Soliton — Wave of Translation (historical intro) -->
         <section>
           <h3 style="margin: 0 0 0.5em;">The Soliton — A Wave of Translation</h3>
           <!-- Top row: animation + quote -->
-          <div style="display: flex; gap: 1.4em; align-items: flex-start; margin-bottom: 0.6em;">
+          <div style="display: flex; gap: 1.4em; align-items: center; margin-bottom: 0.6em;">
 
             <div style="flex: 1.45; min-width: 0;">
               <img src="figures/soliton_canal_animation.gif"
@@ -758,9 +803,14 @@
               <blockquote style="border-left: 3px solid #1565C0; padding: 0.6em 0.9em;
                                   margin: 0; background: #f0f5ff; border-radius: 0 6px 6px 0;
                                   font-style: italic; color: #333; line-height: 1.55;">
-                "I followed it on horseback, and overtook it still rolling on at a rate of some
-                eight or nine miles an hour, preserving its original figure some thirty feet long
-                and a foot to a foot and a half in height."
+                "I was observing the motion of a boat which was rapidly drawn along a narrow
+                channel by a pair of horses, when the boat suddenly stopped — not so the mass
+                of water in the channel which it had put in motion; it accumulated round the
+                prow of the vessel in a state of violent agitation, then suddenly leaving it
+                behind, rolled forward with great velocity… I followed it on horseback, and
+                overtook it still rolling on at a rate of some eight or nine miles an hour,
+                preserving its original figure some thirty feet long and a foot to a foot
+                and a half in height."
                 <div style="text-align: right; font-style: normal; font-size: 0.85em;
                             color: #44546A; margin-top: 0.4em; font-weight: 600;">
                   — John Scott Russell, Union Canal, Edinburgh, August 1834
@@ -770,10 +820,9 @@
 
           </div>
 
-          <!-- Bottom row: two boxes side by side -->
-          <div style="display: flex; gap: 1.0em; font-size: 0.37em;">
-
-            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
+          <!-- Bottom row: single box -->
+          <div style="font-size: 0.37em;">
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
               <div style="font-weight: 700; color: #44546A; margin-bottom: 0.35em;">Historical milestones</div>
               <ul style="margin: 0; padding-left: 1.2em;">
                 <li>Russell's report to the British Association (1844) was initially rejected by theorists — a wave cannot travel without changing shape</li>
@@ -781,16 +830,6 @@
                 <li>Zabusky &amp; Kruskal (1965) re-discovered them numerically and coined the term <em>soliton</em> — a particle-like wave that passes through others intact</li>
               </ul>
             </div>
-
-            <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em 0.9em;">
-              <div style="font-weight: 700; color: #44546A; margin-bottom: 0.35em;">Why it matters for optics</div>
-              <ul style="margin: 0; padding-left: 1.2em;">
-                <li>Optical solitons arise when anomalous GVD exactly cancels SPM-induced chirp — the pulse neither stretches nor compresses</li>
-                <li>Higher-order solitons (N&nbsp;&gt;&nbsp;1) first compress dramatically before splitting — the engine of our compression scheme</li>
-                <li>Fundamental soliton (N = 1): \(u(z,\tau) = \operatorname{sech}(\tau)\,e^{iz/2}\) — envelope fixed, only phase accumulates</li>
-              </ul>
-            </div>
-
           </div>
           <aside class="notes">
             <ul>
@@ -818,9 +857,9 @@
                 \right]$$
             </div>
 
-            <div style="flex: 1.2; min-width: 0;">
+            <div style="flex: 1.2; min-width: 0; display: flex; justify-content: center;">
               <img src="figures/soliton_optical_animation.gif"
-                   style="width: 100%; border-radius: 6px; border: 1px solid #ddd;" />
+                   style="width: 85%; border-radius: 6px; border: 1px solid #ddd;" />
             </div>
 
           </div>
@@ -855,7 +894,7 @@
               </ul>
             </div>
           </div>
-
+          <p class="slide-footnote"><a href="https://doi.org/10.1038/s41566-019-0416-4"><em>Nat. Photonics</em> <strong>13</strong>, 547–554 (2019)</a></p>
           <aside class="notes">
             <ul>
               <li>This is equation 1 from Travers et al., Nature Photonics 2019. It is the GVD of the HEnm guided modes of a gas-filled hollow capillary fibre.</li>
@@ -868,45 +907,40 @@
 
         <!-- Generating a Soliton -->
         <section>
-          <h3 style="margin: 0 0 0.5em;">Generating a Soliton</h3>
-          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.41em;">
+          <h3 style="margin: 0 0 0.4em;">Generating a Soliton</h3>
 
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Requirements</h3>
+          <div style="position: relative; margin-bottom: 0.5em;">
+            <img src="figures/RDW_simulation.png" style="width: 100%; border-radius: 4px; display: block;" />
+            <!-- Dashed line at 75 cm: y ≈ 28% from top, spanning left panel x-axis (180–1100 nm) -->
+            <div style="position: absolute; top: 28%; left: 7%; width: 40%; height: 0;
+                        border-top: 1.5px dashed white; opacity: 0.6; pointer-events: none;"></div>
+          </div>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.38em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Soliton Formation</h3>
               <ul>
-                <li>Anomalous dispersion: $\beta_2 < 0$ — set by gas pressure and core size</li>
-                <li>Sufficient nonlinearity: soliton number $N^2 = \gamma P_0 \tau^2 / |\beta_2|$</li>
-                <li>Fibre long enough for dynamics to develop: $L_\text{fibre} > L_\text{fiss}$</li>
-                <li>Low enough loss that the pulse survives to the fission point: $L_\text{fiss} < L_\text{loss}$</li>
+                <li>SPM broadens the spectrum; anomalous GVD ($\beta_2 < 0$) balances the induced chirp</li>
+                <li>When SPM and GVD balance, the pulse neither stretches nor compresses — it propagates as a soliton</li>
               </ul>
             </div>
 
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Fission vs. Loss Length</h3>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.7em;">
+              <h3>Extreme Broadening</h3>
               <ul>
-                <li>$L_\text{fiss} \propto a^2$, $L_\text{loss} \propto a^3$ — larger core always improves the ratio</li>
-                <li>$L_\text{fiss} / L_\text{loss} \propto 1/a$ → no fundamental barrier, just requires large enough core</li>
-                <li>Shorter pulses or higher intensity reduce $L_\text{fiss}$ independently of core size</li>
-                <li>This work: $N = 6.8$, $a = 125\,\mu$m, $\tau = 26$ fs, 1 bar He → $L_\text{fiss} \approx 1.5$ m</li>
-              </ul>
-            </div>
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Coherence Constraints</h3>
-              <ul>
-                <li>$N < 15$: above this, modulational instability destroys pulse-to-pulse coherence</li>
-                <li>Upper intensity limit: ionisation of the fill gas breaks the nonlinear interaction</li>
-                <li>Noble gases preferred: high ionisation threshold, well-characterised $n_2$, no Raman contribution</li>
-                <li>Target: $N \sim 5$–$10$ for efficient, coherent soliton self-compression</li>
+                <li>The combination of SPM-driven broadening and dispersion-balanced compression produces a UV–NIR supercontinuum in a single fibre pass</li>
+                <li>Noble gas fill gives tuneable nonlinearity via pressure; large core supports high pulse energies</li>
               </ul>
             </div>
 
           </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1038/s41566-019-0416-4"><em>Nat. Photonics</em> <strong>13</strong>, 547–554 (2019)</a></p>
           <aside class="notes">
             <ul>
-              <li>This slide collects the conditions needed to actually achieve soliton dynamics — bridging the theoretical equations for L_fiss and L_loss to the practical design choices.</li>
-              <li>The scaling L_fiss ∝ a² and L_loss ∝ a³ is the central result of Travers 2019: it proves that soliton dynamics in large-core HCF are not just possible but become easier as the core grows. Prior work used small cores where L_fiss >> L_fibre.</li>
-              <li>Coherence is the practical upper limit on N — shot-to-shot noise grows exponentially above N ~ 15 via modulational instability seeded by quantum noise.</li>
+              <li>The key message: it is the combination of SPM spectral broadening and dispersion-balanced compression that produces this extreme broadening. Neither effect alone is sufficient.</li>
+              <li>The RDW simulation shows the spectral (left) and temporal (right) evolution along the fibre. The dashed line marks 75 cm — the approximate fission point where the soliton breaks up and the dispersive wave is emitted into the UV.</li>
+              <li>Large core HCF is essential: it keeps L_fiss well within L_loss while allowing the high pulse energies needed to reach the required soliton number.</li>
             </ul>
           </aside>
         </section>
@@ -949,47 +983,12 @@
               </ul>
             </div>
           </div>
-
+          <p class="slide-footnote"><a href="https://doi.org/10.1038/s41566-019-0416-4"><em>Nat. Photonics</em> <strong>13</strong>, 547–554 (2019)</a></p>
           <aside class="notes">
             <ul>
               <li>Equation 3 from Travers et al., Nature Photonics 2019. The δ(λ₀, λ_zd) function encodes the dispersion landscape — specifically the integrated anomalous GVD between the pump and zero-dispersion wavelength.</li>
               <li>The key scaling argument: L_fiss ∝ a² and L_loss ∝ a³, so L_fiss/L_loss ∝ 1/a. This means there is no fundamental barrier to soliton dynamics in HCF — you just need a large enough core. Previous HCF post-compression experiments used ~1 m fibres with 30 fs pulses, giving L_fiss >> L_fibre, which is why soliton effects were never seen.</li>
               <li>The ionisation limit on intensity is important — noble gases (He, Ar, Ne) are preferred because they have high ionisation thresholds and well-characterised nonlinearity.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <!-- Soliton Introduction -->
-        <section>
-          <h3 style="margin: 0 0 0.4em;">Soliton Self-Compression</h3>
-          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>What is a Soliton?</h3>
-              <ul>
-                <li>A soliton is a pulse that propagates without changing shape — dispersion and nonlinearity exactly balance</li>
-                <li>In anomalous dispersion (β₂ &lt; 0), negative GDD competes with SPM-induced positive chirp</li>
-                <li>A <em>higher-order soliton</em> (soliton number N &gt; 1) undergoes periodic compression and splitting — it first compresses dramatically before dispersing</li>
-                <li>Soliton number: N² = L_D / L_NL = γ P₀ τ² / |β₂| — set by pulse energy and fiber parameters</li>
-              </ul>
-            </div>
-
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>HCF Advantage</h3>
-              <ul>
-                <li>Anti-resonant HCF can be designed with anomalous dispersion at 800 nm by controlling core size and gas pressure</li>
-                <li>Low nonlinearity (air vs glass) allows high pulse energies while maintaining the correct N for soliton compression</li>
-                <li>Compression ratio scales as N — typical values N = 5–15 give 5–15× temporal compression in a single pass</li>
-                <li>Unlike chirped-mirror compression, soliton compression requires no additional optics after the fibre</li>
-              </ul>
-            </div>
-
-          </div>
-          <aside class="notes">
-            <ul>
-              <li>The key insight is that in anomalous dispersion, GDD and SPM have opposite signs of chirp — GDD stretches the pulse in time (red before blue for anomalous) while SPM creates new blue frequencies at the leading edge and red at the trailing edge. At the right power level (N=1), these exactly cancel. For N&gt;1, the nonlinearity dominates early and the pulse compresses first.</li>
-              <li>In hollow core fibre, you get anomalous dispersion "for free" at the right core size — unlike solid silica which has normal dispersion below 1.3 µm. This is why HCF enables soliton compression at 800 nm.</li>
-              <li>The dispersive wave emission on the next slide is a direct consequence of higher-order soliton dynamics — energy shed by the soliton into a phase-matched resonance.</li>
             </ul>
           </aside>
         </section>
@@ -1012,27 +1011,37 @@
           </p>
         </section>
 
-        <!-- Upcoming: RDW Experiment [placeholder] -->
+        <!-- Upcoming: RDW Experiment -->
         <section>
-          <h3 style="margin: 0 0 0.4em;">Upcoming — [RDW Experiment Name]</h3>
-          <div style="display: flex; gap: 1.2em; align-items: flex-start; font-size: 0.42em; margin-top: 0.5em;">
+          <h3 style="margin: 0 0 0.4em;">Upcoming — Investigating Deep UV Driven Photochemistry in Alkenes with Sub-10 fs Time Resolution</h3>
+          <div style="display: flex; gap: 1.2em; align-items: center; font-size: 0.42em; margin-top: 0.4em;">
 
             <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
               <h3>Science Motivation</h3>
               <ul>
-                <li>[Science question being addressed — TBD]</li>
-                <li>[Why RDW? wavelength tunability / duration — TBD]</li>
-                <li>[Target process / timescale — TBD]</li>
-                <li>[Beamline / sample system — TBD]</li>
+                <li>&lt;7 fs at 210 nm (RDW) + &lt;10 fs X-rays → sub-10 fs IRF to directly clock excited-state molecular motion</li>
+                <li>Target: cis/trans isomerisation of 1,3-butadiene — predicted to complete in tens of fs, never time-resolved</li>
+                <li>Heavier substituents in 2,5-dimethyl-2,4-hexadiene predicted to slow isomerisation — tests steric control of reaction pathway</li>
               </ul>
+              <!-- Molecular structure thumbnails -->
+              <div style="display: flex; gap: 1em; margin-top: 0.8em; align-items: center; justify-content: center;">
+                <div style="text-align: center;">
+                  <img src="figures/Butadiene.svg" style="height: 48px; object-fit: contain;" />
+                  <div style="font-size: 0.75em; color: #666; margin-top: 0.2em;">1,3-butadiene</div>
+                </div>
+                <div style="text-align: center;">
+                  <img src="figures/2-4-Hexadiene-2-5-dimethyl.svg" style="height: 48px; object-fit: contain;" />
+                  <div style="font-size: 0.75em; color: #666; margin-top: 0.2em;">2,5-dimethyl-2,4-hexadiene</div>
+                </div>
+              </div>
             </div>
 
-            <div style="flex: 1; border: 2px dashed #aaa; border-radius: 8px; padding: 2em; text-align: center; color: #888;">
-              <p style="font-size: 1.1em; margin: 0 0 0.5em; font-weight: bold;">Expected output / simulation</p>
-              <p>[RDW spectrum, tuning curve, or pulse — figure TBD]</p>
+            <div style="flex: 1;">
+              <img src="figures/butadiene_s2_plot.png" style="width: 100%; border-radius: 4px;" />
             </div>
 
           </div>
+          <p class="slide-footnote">Run 26 — cxi101344326</p>
         </section>
 
         <!-- Noble Gas Nonlinearity (reference copy) -->
@@ -1193,6 +1202,42 @@
           <h2 style="color: #aaa;">Backup Slides</h2>
         </section>
 
+        <!-- Soliton Introduction -->
+        <section>
+          <h3 style="margin: 0 0 0.4em;">Soliton Self-Compression</h3>
+          <div style="display: flex; gap: 1.5em; align-items: flex-start; font-size: 0.44em; margin-top: 0.5em;">
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>What is a Soliton?</h3>
+              <ul>
+                <li>A soliton is a pulse that propagates without changing shape — dispersion and nonlinearity exactly balance</li>
+                <li>In anomalous dispersion (β₂ &lt; 0), negative GDD competes with SPM-induced positive chirp</li>
+                <li>A <em>higher-order soliton</em> (soliton number N &gt; 1) undergoes periodic compression and splitting — it first compresses dramatically before dispersing</li>
+                <li>Soliton number: N² = L_D / L_NL = γ P₀ τ² / |β₂| — set by pulse energy and fiber parameters</li>
+              </ul>
+            </div>
+
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>HCF Advantage</h3>
+              <ul>
+                <li>Anti-resonant HCF can be designed with anomalous dispersion at 800 nm by controlling core size and gas pressure</li>
+                <li>Low nonlinearity (air vs glass) allows high pulse energies while maintaining the correct N for soliton compression</li>
+                <li>Compression ratio scales as N — typical values N = 5–15 give 5–15× temporal compression in a single pass</li>
+                <li>Unlike chirped-mirror compression, soliton compression requires no additional optics after the fibre</li>
+              </ul>
+            </div>
+
+          </div>
+          <p class="slide-footnote"><a href="https://doi.org/10.1038/s41566-019-0416-4"><em>Nat. Photonics</em> <strong>13</strong>, 547–554 (2019)</a></p>
+          <aside class="notes">
+            <ul>
+              <li>The key insight is that in anomalous dispersion, GDD and SPM have opposite signs of chirp — GDD stretches the pulse in time (red before blue for anomalous) while SPM creates new blue frequencies at the leading edge and red at the trailing edge. At the right power level (N=1), these exactly cancel. For N&gt;1, the nonlinearity dominates early and the pulse compresses first.</li>
+              <li>In hollow core fibre, you get anomalous dispersion "for free" at the right core size — unlike solid silica which has normal dispersion below 1.3 µm. This is why HCF enables soliton compression at 800 nm.</li>
+              <li>The dispersive wave emission on the next slide is a direct consequence of higher-order soliton dynamics — energy shed by the soliton into a phase-matched resonance.</li>
+            </ul>
+          </aside>
+        </section>
+
       </div><!-- /.slides -->
 
       <!-- Stanford+DOE logo shown only on title slide, fixed to bottom-right corner -->
@@ -1210,6 +1255,9 @@
         alt="SLAC"
         style="position:fixed; bottom:12px; left:18px; height:52px; width:auto; z-index:200; transition:opacity 0.3s;"
       />
+
+      <!-- Fixed footnote overlay — content swapped per slide -->
+      <div id="footnote-overlay"></div>
 
       <!-- Persistent SLAC footer (hidden on title slide) -->
       <div class="slac-footer" id="slac-footer">
@@ -1246,6 +1294,25 @@
       }
       Reveal.on('slidechanged', updateChrome);
       Reveal.on('ready', updateChrome);
+
+      // Swap footnote content for the current slide
+      const footnoteOverlay = document.getElementById('footnote-overlay');
+      function updateFootnote() {
+        const fn = Reveal.getCurrentSlide()?.querySelector('.slide-footnote');
+        footnoteOverlay.innerHTML = fn ? fn.innerHTML : '';
+      }
+      Reveal.on('slidechanged', updateFootnote);
+      Reveal.on('ready', updateFootnote);
+
+      // Intercept clicks on footnote links before reveal.js captures them
+      footnoteOverlay.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (link && link.href) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          window.open(link.href, '_blank');
+        }
+      }, true);
     </script>
   </body>
 </html>

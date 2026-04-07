@@ -91,17 +91,6 @@ ax2.tick_params(axis='y', colors='#1565C0', length=3)
 ax2.spines['right'].set_color('#1565C0')
 ax2.spines[['top', 'left', 'bottom']].set_visible(False)
 
-# Annotations
-ax1.annotate("new low-$\\omega$\n(red-shifted)",
-             xy=(-0.65, 0.5), xytext=(-2.3, 1.38),
-             fontsize=7.5, color=RED_C, ha='center', va='bottom',
-             arrowprops=dict(arrowstyle='->', color=RED_C, lw=1.1,
-                             connectionstyle='arc3,rad=0.25'))
-ax1.annotate("new high-$\\omega$\n(blue-shifted)",
-             xy=(0.65, 0.5), xytext=(2.2, 1.38),
-             fontsize=7.5, color=BLUE_C, ha='center', va='bottom',
-             arrowprops=dict(arrowstyle='->', color=BLUE_C, lw=1.1,
-                             connectionstyle='arc3,rad=-0.25'))
 
 # Equation
 ax1.text(0, 1.64,
