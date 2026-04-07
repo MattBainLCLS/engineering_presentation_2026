@@ -6,11 +6,15 @@ shift δω(t) = −dφ/dt = −B·dI/dt overlaid on a secondary y-axis.
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+matplotlib.rcParams.update({
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Lato', 'Arial', 'Helvetica Neue', 'Helvetica', 'DejaVu Sans'],
+})
 import matplotlib.pyplot as plt
 
 BORDER  = "#44546A"
-PULSE_C = "#E65100"   # orange — intensity
-FREQ_C  = "#1565C0"   # blue   — instantaneous frequency shift
+PULSE_C = "#E04F39"   # SPIRITED — intensity
+FREQ_C  = "#4298B5"   # SKY      — instantaneous frequency shift
 
 t  = np.linspace(-2.5, 2.5, 1000)
 I  = np.exp(-2 * np.log(2) * t**2)   # Gaussian FWHM = 1 (normalised)
@@ -40,7 +44,7 @@ ax2.set_ylabel(r"Freq. shift  $\delta\omega(t)$", fontsize=8, color=FREQ_C)
 peak = np.max(np.abs(dw))
 ax2.set_ylim(-peak * 1.5, peak * 1.5)
 ax2.set_yticks([-peak, 0, peak])
-ax2.set_yticklabels(["blue", "0", "red"], fontsize=7.5, color=FREQ_C)
+ax2.set_yticklabels(["red", "0", "blue"], fontsize=7.5, color=FREQ_C)
 ax2.tick_params(axis='y', colors=FREQ_C, length=3)
 ax2.spines['right'].set_color(FREQ_C)
 ax2.spines[['top', 'left', 'bottom']].set_visible(False)

@@ -478,6 +478,83 @@
           </aside>
         </section>
 
+        <!-- Noble Gas Nonlinearity -->
+        <section>
+          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
+            <thead>
+              <tr style="background: var(--slac-red); color: white;">
+                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (3-photon λ)</th>
+                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">24.6 eV (151.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy, high-intensity</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">21.6 eV (172.2 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV generation</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">15.8 eV (235.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">14.0 eV (265.7 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
+              </tr>
+              <tr style="background: #f9f9f9;">
+                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">12.1 eV (307.4 nm)</td>
+                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>Choosing a Fill Gas</h3>
+              <ul>
+                <li>Heavier gas or higher pressure compensates for weaker nonlinearity in large-core fibres</li>
+                <li>$n_2$ scales linearly with pressure — Xe gives same nonlinearity as Ar at ~8× lower pressure</li>
+                <li>IP sets two limits: maximum intensity before plasma formation, <strong>and</strong> minimum drive wavelength — catastrophic ionisation if $\lambda_\text{drive}$ is blue of the 3-photon equivalent</li>
+              </ul>
+            </div>
+            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
+              <h3>At LCLS</h3>
+              <ul>
+                <li>He: highest IP — handles mJ intensities and deep-UV drive wavelengths; requires high pressure to compensate low $n_2$</li>
+                <li>Ne: deep-UV / VUV generation at moderate pressures</li>
+                <li>Ar / Kr: workhorse gases for SPM post-compression at visible / near-IR wavelengths</li>
+                <li>Pressure tuning is the primary control — same gas, variable dynamics</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+            <ul>
+              <li>n₂ values from Lehmeier et al., Opt. Commun. 56, 67 (1985) — ref. 76 in Travers 2019. These are at 800 nm, 1 atm.</li>
+              <li>The ~2400× range from He to Xe is enormous. This is why helium experiments require bars of pressure while xenon experiments work at millibar levels.</li>
+              <li>The ionisation potential sets the maximum usable intensity via tunnel ionisation (PPT rate). Helium's 24.6 eV allows intensities up to ~10¹⁵ W/cm² before significant ionisation, where xenon is already heavily ionised at ~10¹³ W/cm².</li>
+              <li>Molecular gases (N₂, H₂) are occasionally used but add Raman contributions to the nonlinearity, which complicates the soliton dynamics.</li>
+            </ul>
+          </aside>
+        </section>
+
         <!-- OPA Broadening Results -->
         <section>
           <h3 style="margin: 0 0 0.5em;">Spectral Broadening of OPA in S-HCF</h3>
@@ -528,6 +605,7 @@
             <span><strong>30 cm</strong> S-HCF · 150 µm core · Argon — fits inside a TILE</span>
             <span>FTL tunable from <strong>~100 fs → ~13 fs</strong> by pressure alone</span>
           </div>
+          <p class="slide-footnote">Currently ongoing in ASC Central Lab</p>
           <aside class="notes">
             <ul>
               <li>This is our own pressure-scan data using a 30 cm stretched HCF — short enough to fit inside a TILE enclosure, making it viable for deployment at an LCLS hutch without a dedicated laser room.</li>
@@ -980,75 +1058,6 @@
 
           </div>
           <p class="slide-footnote">Run 26 — cxi101344326</p>
-        </section>
-
-        <!-- Noble Gas Nonlinearity (reference copy) -->
-        <section>
-          <h3 style="margin: 0 0 0.5em;">Nonlinearity of Rare Fill Gases</h3>
-
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.42em; margin-bottom: 0.8em;">
-            <thead>
-              <tr style="background: var(--slac-red); color: white;">
-                <th style="padding: 0.5em 0.8em; text-align: left; font-weight: 400;">Gas</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Relative $n_2$</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Ionisation potential (3-photon λ)</th>
-                <th style="padding: 0.5em 0.8em; text-align: center; font-weight: 400;">Typical use</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">He</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">1</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">24.6 eV (151.2 nm)</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">High-energy, high-intensity</td>
-              </tr>
-              <tr>
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ne</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">3</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">21.6 eV (172.2 nm)</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Deep-UV / VUV generation</td>
-              </tr>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Ar</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">290</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">15.8 eV (235.4 nm)</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">SPM post-compression</td>
-              </tr>
-              <tr>
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Kr</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">790</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">14.0 eV (265.7 nm)</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Low-pressure broadening</td>
-              </tr>
-              <tr style="background: #f9f9f9;">
-                <td style="padding: 0.45em 0.8em; font-weight: 700; color: var(--slac-dark);">Xe</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">2380</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">12.1 eV (307.4 nm)</td>
-                <td style="padding: 0.45em 0.8em; text-align: center;">Low-energy, long-wavelength</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style="display: flex; gap: 1.2em; font-size: 0.41em;">
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>Choosing a Fill Gas</h3>
-              <ul>
-                <li>Working in the IR requires a larger core → weaker effective nonlinearity → compensate with a heavier gas (Kr, Xe) or higher pressure</li>
-                <li>$n_2$ scales linearly with pressure — Xe achieves the same nonlinearity as Ar at ~8× lower pressure</li>
-                <li>He and Ne for high-energy / high-intensity experiments where Xe or Ar would ionise</li>
-                <li>Ionisation potential sets the ceiling: lower IP gas = lower maximum intensity before plasma formation</li>
-              </ul>
-            </div>
-            <div class="col-box" style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 0.8em;">
-              <h3>At LCLS</h3>
-              <ul>
-                <li>Helium: high ionisation potential tolerates the intensities needed at mJ energies</li>
-                <li>Neon: used for shorter-wavelength UV generation (&lt;250 nm) at moderate pressures</li>
-                <li>Pressure tuning replaces gas choice as the primary control — same gas, variable dynamics</li>
-                <li>All noble gases are chemically inert — no damage to fibre walls or optical coatings</li>
-              </ul>
-            </div>
-          </div>
         </section>
 
         <!-- Acknowledgements -->
